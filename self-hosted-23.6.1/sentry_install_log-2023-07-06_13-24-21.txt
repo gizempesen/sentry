@@ -1,0 +1,1903 @@
+▶ Parsing command line ...
+
+▶ Detecting Docker platform
+Detected Docker platform is linux/amd64
+
+▶ Initializing Docker Compose ...
+
+▶ Setting up error handling ...
+Sending build context to Docker daemon  2.048kB
+Step 1/4 : FROM debian:bullseye-slim
+ ---> 02ad3ff027de
+Step 2/4 : LABEL MAINTAINER="oss@sentry.io"
+ ---> Using cache
+ ---> a8b56bdd83f3
+Step 3/4 : RUN set -x   && apt-get update   && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends jq   && apt-get clean   && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 55279f521c01
+Step 4/4 : ENTRYPOINT ["jq"]
+ ---> Using cache
+ ---> 3e36e6d2cdfc
+Successfully built 3e36e6d2cdfc
+Successfully tagged sentry-self-hosted-jq-local:latest
+
+Hey, so ... we would love to automatically find out about issues with your
+Sentry instance so that we can improve the product. Turns out there is an app
+for that, called Sentry. Would you be willing to let us automatically send data
+about your instance upstream to Sentry for development and debugging purposes?
+
+  y / yes / 1
+  n / no / 0
+
+(Btw, we send this to our own self-hosted Sentry instance, not to Sentry SaaS,
+so that we can be in this together.)
+
+Here's the info we may collect:
+
+  - OS username
+  - IP address
+  - install log
+  - runtime errors
+  - performance data
+
+Thirty (30) day retention. No marketing. Privacy policy at sentry.io/privacy.
+
+y or n? 
+Thank you. To avoid this prompt in the future, use one of these flags:
+
+  --report-self-hosted-issues
+  --no-report-self-hosted-issues
+
+or set the REPORT_SELF_HOSTED_ISSUES environment variable:
+
+  REPORT_SELF_HOSTED_ISSUES=1 to send data
+  REPORT_SELF_HOSTED_ISSUES=0 to not send data
+
+latest: Pulling from getsentry/sentry-cli
+Digest: sha256:68ece7a688da382dc29db6666e43f5150f5728a5abb32ad6f4f42e04b371ad1d
+Status: Image is up to date for getsentry/sentry-cli:latest
+docker.io/getsentry/sentry-cli:latest
+
+▶ Checking for latest commit ... 
+skipped
+
+▶ Checking minimum requirements ...
+Found Docker version 20.10.21
+Found Docker Compose version 2.19.1
+Unable to find image 'busybox:latest' locally
+latest: Pulling from library/busybox
+809d8e20e203: Pulling fs layer
+809d8e20e203: Verifying Checksum
+809d8e20e203: Download complete
+809d8e20e203: Pull complete
+Digest: sha256:2376a0c12759aa1214ba83e771ff252c7b1663216b192fbe5e0fb364e952f85c
+Status: Downloaded newer image for busybox:latest
+
+▶ Turning things off ...
+
+▶ Creating volumes for persistent storage ...
+Created sentry-clickhouse.
+Created sentry-data.
+Created sentry-kafka.
+Created sentry-postgres.
+Created sentry-redis.
+Created sentry-symbolicator.
+Created sentry-zookeeper.
+
+▶ Ensuring files from examples ...
+Creating sentry/sentry.conf.py ...
+Creating sentry/config.yml ...
+Creating symbolicator/config.yml ...
+
+▶ Ensuring Relay credentials ...
+Creating relay/config.yml ...
+ relay Pulling 
+ 8b91b88d5577 Pulling fs layer 
+ 1b55b75114c2 Pulling fs layer 
+ 13ae625874bf Pulling fs layer 
+ 67d1166f4c29 Pulling fs layer 
+ 4f4fb700ef54 Pulling fs layer 
+ 1e742f8f2a94 Pulling fs layer 
+ 3ae89cc4698f Pulling fs layer 
+ 708389b3fd46 Pulling fs layer 
+ 4f4fb700ef54 Waiting 
+ 1e742f8f2a94 Waiting 
+ 3ae89cc4698f Waiting 
+ 708389b3fd46 Waiting 
+ 8b91b88d5577 Downloading [>                                                  ]  278.5kB/27.14MB
+ 8b91b88d5577 Downloading [======================>                            ]   12.3MB/27.14MB
+ 13ae625874bf Downloading [========>                                          ]     733B/4.478kB
+ 13ae625874bf Downloading [==================================================>]  4.478kB/4.478kB
+ 13ae625874bf Verifying Checksum 
+ 13ae625874bf Download complete 
+ 1b55b75114c2 Downloading [>                                                  ]  52.57kB/5.135MB
+ 8b91b88d5577 Downloading [============================================>      ]  24.33MB/27.14MB
+ 8b91b88d5577 Verifying Checksum 
+ 8b91b88d5577 Download complete 
+ 1b55b75114c2 Downloading [========>                                          ]    898kB/5.135MB
+ 8b91b88d5577 Extracting [>                                                  ]  294.9kB/27.14MB
+ 8b91b88d5577 Extracting [==========>                                        ]  5.898MB/27.14MB
+ 1b55b75114c2 Downloading [================>                                  ]  1.652MB/5.135MB
+ 8b91b88d5577 Extracting [====================>                              ]  11.21MB/27.14MB
+ 1b55b75114c2 Downloading [===================================>               ]   3.63MB/5.135MB
+ 1b55b75114c2 Verifying Checksum 
+ 1b55b75114c2 Download complete 
+ 8b91b88d5577 Extracting [=============================>                     ]  16.22MB/27.14MB
+ 8b91b88d5577 Extracting [======================================>            ]  20.94MB/27.14MB
+ 4f4fb700ef54 Downloading [==================================================>]      32B/32B
+ 4f4fb700ef54 Verifying Checksum 
+ 4f4fb700ef54 Download complete 
+ 67d1166f4c29 Downloading [==================================================>]     139B/139B
+ 67d1166f4c29 Download complete 
+ 8b91b88d5577 Extracting [==============================================>    ]  25.07MB/27.14MB
+ 8b91b88d5577 Extracting [================================================>  ]  26.25MB/27.14MB
+ 8b91b88d5577 Extracting [==================================================>]  27.14MB/27.14MB
+ 8b91b88d5577 Pull complete 
+ 1b55b75114c2 Extracting [>                                                  ]  65.54kB/5.135MB
+ 1b55b75114c2 Extracting [========================>                          ]   2.49MB/5.135MB
+ 1e742f8f2a94 Downloading [>                                                  ]  144.8kB/14.41MB
+ 1b55b75114c2 Extracting [==================================================>]  5.135MB/5.135MB
+ 1b55b75114c2 Pull complete 
+ 13ae625874bf Extracting [==================================================>]  4.478kB/4.478kB
+ 13ae625874bf Extracting [==================================================>]  4.478kB/4.478kB
+ 1e742f8f2a94 Downloading [===>                                               ]  1.029MB/14.41MB
+ 13ae625874bf Pull complete 
+ 67d1166f4c29 Extracting [==================================================>]     139B/139B
+ 67d1166f4c29 Extracting [==================================================>]     139B/139B
+ 708389b3fd46 Downloading [======================================>            ]     734B/959B
+ 708389b3fd46 Downloading [==================================================>]     959B/959B
+ 708389b3fd46 Verifying Checksum 
+ 3ae89cc4698f Downloading [>                                                  ]  537.5kB/130.6MB
+ 1e742f8f2a94 Downloading [======>                                            ]  1.914MB/14.41MB
+ 67d1166f4c29 Pull complete 
+ 4f4fb700ef54 Extracting [==================================================>]      32B/32B
+ 4f4fb700ef54 Extracting [==================================================>]      32B/32B
+ 4f4fb700ef54 Pull complete 
+ 3ae89cc4698f Downloading [>                                                  ]  1.078MB/130.6MB
+ 1e742f8f2a94 Downloading [===============>                                   ]  4.421MB/14.41MB
+ 3ae89cc4698f Downloading [>                                                  ]   2.16MB/130.6MB
+ 1e742f8f2a94 Downloading [=========================>                         ]  7.239MB/14.41MB
+ 1e742f8f2a94 Downloading [==============================================>    ]  13.37MB/14.41MB
+ 3ae89cc4698f Downloading [=>                                                 ]  4.322MB/130.6MB
+ 1e742f8f2a94 Verifying Checksum 
+ 1e742f8f2a94 Download complete 
+ 1e742f8f2a94 Extracting [>                                                  ]  163.8kB/14.41MB
+ 1e742f8f2a94 Extracting [=========>                                         ]  2.785MB/14.41MB
+ 3ae89cc4698f Downloading [==>                                                ]  7.533MB/130.6MB
+ 1e742f8f2a94 Extracting [============================>                      ]  8.356MB/14.41MB
+ 3ae89cc4698f Downloading [====>                                              ]  11.29MB/130.6MB
+ 1e742f8f2a94 Extracting [=================================================> ]  14.25MB/14.41MB
+ 1e742f8f2a94 Extracting [==================================================>]  14.41MB/14.41MB
+ 1e742f8f2a94 Extracting [==================================================>]  14.41MB/14.41MB
+ 1e742f8f2a94 Pull complete 
+ 3ae89cc4698f Downloading [=====>                                             ]  14.52MB/130.6MB
+ 3ae89cc4698f Downloading [======>                                            ]  18.26MB/130.6MB
+ 3ae89cc4698f Downloading [========>                                          ]  23.11MB/130.6MB
+ 3ae89cc4698f Downloading [==========>                                        ]  26.32MB/130.6MB
+ 3ae89cc4698f Downloading [===========>                                       ]  31.13MB/130.6MB
+ 3ae89cc4698f Downloading [=============>                                     ]  34.88MB/130.6MB
+ 3ae89cc4698f Downloading [================>                                  ]   42.9MB/130.6MB
+ 3ae89cc4698f Downloading [==================>                                ]  48.77MB/130.6MB
+ 3ae89cc4698f Downloading [=====================>                             ]  56.33MB/130.6MB
+ 3ae89cc4698f Downloading [=======================>                           ]  62.24MB/130.6MB
+ 3ae89cc4698f Downloading [============================>                      ]  74.04MB/130.6MB
+ 3ae89cc4698f Downloading [=================================>                 ]  88.52MB/130.6MB
+ 3ae89cc4698f Downloading [=====================================>             ]  97.13MB/130.6MB
+ 3ae89cc4698f Downloading [======================================>            ]  100.9MB/130.6MB
+ 3ae89cc4698f Downloading [========================================>          ]  105.7MB/130.6MB
+ 3ae89cc4698f Downloading [===========================================>       ]  114.3MB/130.6MB
+ 3ae89cc4698f Downloading [=============================================>     ]    118MB/130.6MB
+ 3ae89cc4698f Downloading [===============================================>   ]  122.8MB/130.6MB
+ 3ae89cc4698f Downloading [================================================>  ]    126MB/130.6MB
+ 3ae89cc4698f Download complete 
+ 3ae89cc4698f Extracting [>                                                  ]  557.1kB/130.6MB
+ 3ae89cc4698f Extracting [======>                                            ]  16.71MB/130.6MB
+ 3ae89cc4698f Extracting [============>                                      ]  32.87MB/130.6MB
+ 3ae89cc4698f Extracting [=================>                                 ]  46.79MB/130.6MB
+ 3ae89cc4698f Extracting [=======================>                           ]  61.83MB/130.6MB
+ 3ae89cc4698f Extracting [=============================>                     ]  77.99MB/130.6MB
+ 3ae89cc4698f Extracting [====================================>              ]   94.7MB/130.6MB
+ 3ae89cc4698f Extracting [==========================================>        ]  109.7MB/130.6MB
+ 3ae89cc4698f Extracting [===============================================>   ]  124.2MB/130.6MB
+ 3ae89cc4698f Extracting [==================================================>]  130.6MB/130.6MB
+ 3ae89cc4698f Pull complete 
+ 708389b3fd46 Extracting [==================================================>]     959B/959B
+ 708389b3fd46 Extracting [==================================================>]     959B/959B
+ 708389b3fd46 Pull complete 
+ relay Pulled 
+ Network sentry-self-hosted_default  Creating
+ Network sentry-self-hosted_default  Created
+ Volume "sentry-self-hosted_sentry-vroom"  Creating
+ Volume "sentry-self-hosted_sentry-vroom"  Created
+ Volume "sentry-self-hosted_sentry-smtp"  Creating
+ Volume "sentry-self-hosted_sentry-smtp"  Created
+ Volume "sentry-self-hosted_sentry-clickhouse-log"  Creating
+ Volume "sentry-self-hosted_sentry-clickhouse-log"  Created
+ Volume "sentry-self-hosted_sentry-smtp-log"  Creating
+ Volume "sentry-self-hosted_sentry-smtp-log"  Created
+ Volume "sentry-self-hosted_sentry-zookeeper-log"  Creating
+ Volume "sentry-self-hosted_sentry-zookeeper-log"  Created
+ Volume "sentry-self-hosted_sentry-secrets"  Creating
+ Volume "sentry-self-hosted_sentry-secrets"  Created
+ Volume "sentry-self-hosted_sentry-kafka-log"  Creating
+ Volume "sentry-self-hosted_sentry-kafka-log"  Created
+ Volume "sentry-self-hosted_sentry-nginx-cache"  Creating
+ Volume "sentry-self-hosted_sentry-nginx-cache"  Created
+Relay credentials written to relay/credentials.json.
+
+▶ Generating secret key ...
+Secret key written to sentry/config.yml
+
+▶ Fetching and updating Docker images ...
+23.6.1: Pulling from getsentry/sentry
+f03b40093957: Already exists
+05c2151a829c: Already exists
+e69cf89f7464: Already exists
+dc8674bf3449: Already exists
+49a24f45fbd0: Already exists
+5c816413ee5b: Pulling fs layer
+b4c80fed0058: Pulling fs layer
+b419fb27feb6: Pulling fs layer
+76ba4d3a0787: Pulling fs layer
+01cb1558bc25: Pulling fs layer
+41094eef9e39: Pulling fs layer
+729d5beba499: Pulling fs layer
+8d86a0b3b38a: Pulling fs layer
+012f0ef600a2: Pulling fs layer
+cd24a5429d44: Pulling fs layer
+cd24a5429d44: Waiting
+41094eef9e39: Waiting
+729d5beba499: Waiting
+8d86a0b3b38a: Waiting
+012f0ef600a2: Waiting
+76ba4d3a0787: Waiting
+01cb1558bc25: Waiting
+5c816413ee5b: Verifying Checksum
+5c816413ee5b: Download complete
+b419fb27feb6: Verifying Checksum
+b419fb27feb6: Download complete
+5c816413ee5b: Pull complete
+b4c80fed0058: Verifying Checksum
+b4c80fed0058: Download complete
+b4c80fed0058: Pull complete
+b419fb27feb6: Pull complete
+41094eef9e39: Verifying Checksum
+41094eef9e39: Download complete
+01cb1558bc25: Verifying Checksum
+01cb1558bc25: Download complete
+729d5beba499: Download complete
+012f0ef600a2: Verifying Checksum
+012f0ef600a2: Download complete
+8d86a0b3b38a: Verifying Checksum
+8d86a0b3b38a: Download complete
+cd24a5429d44: Download complete
+76ba4d3a0787: Verifying Checksum
+76ba4d3a0787: Download complete
+76ba4d3a0787: Pull complete
+01cb1558bc25: Pull complete
+41094eef9e39: Pull complete
+729d5beba499: Pull complete
+8d86a0b3b38a: Pull complete
+012f0ef600a2: Pull complete
+cd24a5429d44: Pull complete
+Digest: sha256:a8b0a2759d717bd889f7074478c064525246a5854a3a38c0b5b55afb7cafb174
+Status: Downloaded newer image for getsentry/sentry:23.6.1
+docker.io/getsentry/sentry:23.6.1
+
+▶ Building and tagging Docker images ...
+
+#1 [web internal] load .dockerignore
+#1 transferring context: 2B done
+#1 DONE 0.0s
+
+#2 [web internal] load build definition from Dockerfile
+#2 transferring dockerfile: 463B done
+#2 DONE 0.0s
+
+#3 [web internal] load metadata for docker.io/getsentry/sentry:23.6.1
+#3 DONE 0.0s
+
+#4 [web 1/4] FROM docker.io/getsentry/sentry:23.6.1
+#4 ...
+
+#5 [web internal] load build context
+#5 transferring context: 28.32kB done
+#5 DONE 0.0s
+
+#4 [web 1/4] FROM docker.io/getsentry/sentry:23.6.1
+#4 DONE 0.2s
+
+#6 [web 2/4] COPY . /usr/src/sentry
+#6 DONE 0.4s
+
+#7 [web 3/4] RUN if [ -s /usr/src/sentry/enhance-image.sh ]; then     /usr/src/sentry/enhance-image.sh; fi
+#7 DONE 0.3s
+
+#8 [web 4/4] RUN if [ -s /usr/src/sentry/requirements.txt ]; then     echo "sentry/requirements.txt is deprecated, use sentry/enhance-image.sh - see https://github.com/getsentry/self-hosted#enhance-sentry-image";     pip install -r /usr/src/sentry/requirements.txt; fi
+#8 DONE 0.3s
+
+#9 [web] exporting to image
+#9 exporting layers 0.0s done
+#9 writing image sha256:cbd058c8e314e59c63a2b9db1a1ac00456f548a8ff54545b99f30e4b866da772 done
+#9 naming to docker.io/library/sentry-self-hosted-local done
+#9 DONE 0.1s
+#1 [clickhouse internal] load build definition from Dockerfile
+#1 transferring dockerfile: 71B done
+#1 DONE 0.0s
+
+#2 [clickhouse internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [clickhouse internal] load metadata for docker.io/yandex/clickhouse-server:20.3.9.70
+#3 DONE 1.6s
+
+#4 [clickhouse 1/1] FROM docker.io/yandex/clickhouse-server:20.3.9.70@sha256:932ef73994dd4b6507a55a288c5ee065aae8e77e61ee569512a76a65eddbe2c3
+#4 resolve docker.io/yandex/clickhouse-server:20.3.9.70@sha256:932ef73994dd4b6507a55a288c5ee065aae8e77e61ee569512a76a65eddbe2c3 done
+#4 sha256:2910811b6c4227c2f42aaea9a3dd5f53b1d469f67e2cf7e601f631b119b61ff7 0B / 847B 0.1s
+#4 sha256:932ef73994dd4b6507a55a288c5ee065aae8e77e61ee569512a76a65eddbe2c3 2.62kB / 2.62kB done
+#4 sha256:abe55fc6544d42937af1eccad0a639a039bded091b0972124d3069eba82089b8 7.93kB / 7.93kB done
+#4 sha256:23884877105a7ff84a910895cd044061a4561385ff6c36480ee080b76ec0e771 0B / 26.69MB 0.1s
+#4 sha256:bc38caa0f5b94141276220daaf428892096e4afd24b05668cd188311e00a635f 0B / 35.37kB 0.1s
+#4 sha256:36505266dcc64eeb1010bd2112e6f73981e1a8246e4f6d4e287763b57f101b0b 0B / 161B 0.2s
+#4 sha256:bc38caa0f5b94141276220daaf428892096e4afd24b05668cd188311e00a635f 35.37kB / 35.37kB 0.2s done
+#4 sha256:2910811b6c4227c2f42aaea9a3dd5f53b1d469f67e2cf7e601f631b119b61ff7 847B / 847B 0.5s done
+#4 sha256:23884877105a7ff84a910895cd044061a4561385ff6c36480ee080b76ec0e771 11.53MB / 26.69MB 0.5s
+#4 sha256:36505266dcc64eeb1010bd2112e6f73981e1a8246e4f6d4e287763b57f101b0b 161B / 161B 0.5s done
+#4 sha256:a5132fae6818484d19eecdb42dabdfa1edbe8f9135ec6a6cbd75ca2c5e14f992 0B / 500.59kB 0.5s
+#4 sha256:1cf80c46b9db865352a5ed14f7cda772d377c78a8794d2ca3a5177769122edc5 0B / 133.68MB 0.5s
+#4 sha256:23884877105a7ff84a910895cd044061a4561385ff6c36480ee080b76ec0e771 20.97MB / 26.69MB 0.6s
+#4 sha256:23884877105a7ff84a910895cd044061a4561385ff6c36480ee080b76ec0e771 26.69MB / 26.69MB 0.7s done
+#4 sha256:c515c887f9a3cf1ad064b1a37912b8da4788f2ad2653f0b02e4b30a04dbd276e 0B / 426.52kB 0.7s
+#4 extracting sha256:23884877105a7ff84a910895cd044061a4561385ff6c36480ee080b76ec0e771
+#4 sha256:1cf80c46b9db865352a5ed14f7cda772d377c78a8794d2ca3a5177769122edc5 11.53MB / 133.68MB 0.8s
+#4 sha256:a5132fae6818484d19eecdb42dabdfa1edbe8f9135ec6a6cbd75ca2c5e14f992 500.59kB / 500.59kB 0.8s done
+#4 sha256:c515c887f9a3cf1ad064b1a37912b8da4788f2ad2653f0b02e4b30a04dbd276e 426.52kB / 426.52kB 0.9s done
+#4 sha256:150d44fff90ca45bd0bb0e68302f044dc57f32aabc5847dfc0a6263aad7452d6 0B / 115B 0.9s
+#4 sha256:363252e60260b8f7e03395c3eba7460c76bc4b8a555fe1641148d69f77a9f1fd 0B / 353B 0.9s
+#4 sha256:1cf80c46b9db865352a5ed14f7cda772d377c78a8794d2ca3a5177769122edc5 23.07MB / 133.68MB 1.0s
+#4 sha256:1cf80c46b9db865352a5ed14f7cda772d377c78a8794d2ca3a5177769122edc5 38.80MB / 133.68MB 1.1s
+#4 sha256:363252e60260b8f7e03395c3eba7460c76bc4b8a555fe1641148d69f77a9f1fd 353B / 353B 1.1s done
+#4 sha256:3900f99a06e4345c371a397cd7d08051465a8efb42c7afc07284a55d8654a9d5 0B / 1.49kB 1.1s
+#4 sha256:1cf80c46b9db865352a5ed14f7cda772d377c78a8794d2ca3a5177769122edc5 47.19MB / 133.68MB 1.2s
+#4 sha256:150d44fff90ca45bd0bb0e68302f044dc57f32aabc5847dfc0a6263aad7452d6 115B / 115B 1.2s done
+#4 sha256:3900f99a06e4345c371a397cd7d08051465a8efb42c7afc07284a55d8654a9d5 1.49kB / 1.49kB 1.2s done
+#4 sha256:901229973693a0b033448ad3433a50153f38f5a5f6417274076d44d1f11c4efa 0B / 502.29kB 1.3s
+#4 sha256:1cf80c46b9db865352a5ed14f7cda772d377c78a8794d2ca3a5177769122edc5 58.65MB / 133.68MB 1.4s
+#4 sha256:1cf80c46b9db865352a5ed14f7cda772d377c78a8794d2ca3a5177769122edc5 74.45MB / 133.68MB 1.6s
+#4 extracting sha256:23884877105a7ff84a910895cd044061a4561385ff6c36480ee080b76ec0e771 0.8s done
+#4 sha256:901229973693a0b033448ad3433a50153f38f5a5f6417274076d44d1f11c4efa 502.29kB / 502.29kB 1.4s done
+#4 extracting sha256:bc38caa0f5b94141276220daaf428892096e4afd24b05668cd188311e00a635f done
+#4 sha256:1cf80c46b9db865352a5ed14f7cda772d377c78a8794d2ca3a5177769122edc5 82.84MB / 133.68MB 1.7s
+#4 extracting sha256:2910811b6c4227c2f42aaea9a3dd5f53b1d469f67e2cf7e601f631b119b61ff7 done
+#4 extracting sha256:36505266dcc64eeb1010bd2112e6f73981e1a8246e4f6d4e287763b57f101b0b
+#4 extracting sha256:36505266dcc64eeb1010bd2112e6f73981e1a8246e4f6d4e287763b57f101b0b done
+#4 sha256:1cf80c46b9db865352a5ed14f7cda772d377c78a8794d2ca3a5177769122edc5 92.27MB / 133.68MB 2.0s
+#4 sha256:1cf80c46b9db865352a5ed14f7cda772d377c78a8794d2ca3a5177769122edc5 101.71MB / 133.68MB 2.3s
+#4 sha256:1cf80c46b9db865352a5ed14f7cda772d377c78a8794d2ca3a5177769122edc5 113.25MB / 133.68MB 2.7s
+#4 sha256:1cf80c46b9db865352a5ed14f7cda772d377c78a8794d2ca3a5177769122edc5 128.97MB / 133.68MB 3.0s
+#4 sha256:1cf80c46b9db865352a5ed14f7cda772d377c78a8794d2ca3a5177769122edc5 133.68MB / 133.68MB 3.1s done
+#4 extracting sha256:1cf80c46b9db865352a5ed14f7cda772d377c78a8794d2ca3a5177769122edc5
+#4 extracting sha256:1cf80c46b9db865352a5ed14f7cda772d377c78a8794d2ca3a5177769122edc5 2.9s done
+#4 extracting sha256:a5132fae6818484d19eecdb42dabdfa1edbe8f9135ec6a6cbd75ca2c5e14f992
+#4 extracting sha256:a5132fae6818484d19eecdb42dabdfa1edbe8f9135ec6a6cbd75ca2c5e14f992 0.1s done
+#4 extracting sha256:c515c887f9a3cf1ad064b1a37912b8da4788f2ad2653f0b02e4b30a04dbd276e 0.1s done
+#4 extracting sha256:150d44fff90ca45bd0bb0e68302f044dc57f32aabc5847dfc0a6263aad7452d6 done
+#4 extracting sha256:363252e60260b8f7e03395c3eba7460c76bc4b8a555fe1641148d69f77a9f1fd done
+#4 extracting sha256:3900f99a06e4345c371a397cd7d08051465a8efb42c7afc07284a55d8654a9d5 done
+#4 extracting sha256:901229973693a0b033448ad3433a50153f38f5a5f6417274076d44d1f11c4efa
+#4 extracting sha256:901229973693a0b033448ad3433a50153f38f5a5f6417274076d44d1f11c4efa 0.1s done
+#4 DONE 6.7s
+
+#5 [clickhouse] exporting to image
+#5 exporting layers done
+#5 writing image sha256:daea03479dbeb56c951766859880c700238ec0adc0547842e3489d278cafa08c done
+#5 naming to docker.io/library/clickhouse-self-hosted-local done
+#5 DONE 0.0s
+#1 [attachments-consumer internal] load build definition from Dockerfile
+#1 transferring dockerfile: 32B done
+#1 DONE 0.0s
+
+#2 [attachments-consumer internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [attachments-consumer internal] load metadata for docker.io/getsentry/sentry:23.6.1
+#3 DONE 0.0s
+
+#4 [attachments-consumer 1/4] FROM docker.io/getsentry/sentry:23.6.1
+#4 DONE 0.0s
+
+#5 [attachments-consumer internal] load build context
+#5 transferring context: 297B done
+#5 DONE 0.0s
+
+#6 [attachments-consumer 2/4] COPY . /usr/src/sentry
+#6 CACHED
+
+#7 [attachments-consumer 3/4] RUN if [ -s /usr/src/sentry/enhance-image.sh ]; then     /usr/src/sentry/enhance-image.sh; fi
+#7 CACHED
+
+#8 [attachments-consumer 4/4] RUN if [ -s /usr/src/sentry/requirements.txt ]; then     echo "sentry/requirements.txt is deprecated, use sentry/enhance-image.sh - see https://github.com/getsentry/self-hosted#enhance-sentry-image";     pip install -r /usr/src/sentry/requirements.txt; fi
+#8 CACHED
+
+#9 [attachments-consumer] exporting to image
+#9 exporting layers done
+#9 writing image sha256:358e770ab9deab1a6f13d8346793b183eeb421743491c583d313e65777633448 done
+#9 naming to docker.io/library/sentry-self-hosted-local done
+#9 DONE 0.0s
+#1 [cron internal] load build definition from Dockerfile
+#1 transferring dockerfile: 32B done
+#1 DONE 0.0s
+
+#2 [cron internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [cron internal] load metadata for docker.io/getsentry/sentry:23.6.1
+#3 DONE 0.0s
+
+#4 [cron 1/4] FROM docker.io/getsentry/sentry:23.6.1
+#4 DONE 0.0s
+
+#5 [cron internal] load build context
+#5 transferring context: 297B done
+#5 DONE 0.0s
+
+#6 [cron 2/4] COPY . /usr/src/sentry
+#6 CACHED
+
+#7 [cron 3/4] RUN if [ -s /usr/src/sentry/enhance-image.sh ]; then     /usr/src/sentry/enhance-image.sh; fi
+#7 CACHED
+
+#8 [cron 4/4] RUN if [ -s /usr/src/sentry/requirements.txt ]; then     echo "sentry/requirements.txt is deprecated, use sentry/enhance-image.sh - see https://github.com/getsentry/self-hosted#enhance-sentry-image";     pip install -r /usr/src/sentry/requirements.txt; fi
+#8 CACHED
+
+#9 [cron] exporting to image
+#9 exporting layers done
+#9 writing image sha256:04ec437a2c65124309d1247962210fca253a74b886f11c0810cac94e1c390c91 done
+#9 naming to docker.io/library/sentry-self-hosted-local done
+#9 DONE 0.0s
+#1 [events-consumer internal] load build definition from Dockerfile
+#1 transferring dockerfile: 32B done
+#1 DONE 0.0s
+
+#2 [events-consumer internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [events-consumer internal] load metadata for docker.io/getsentry/sentry:23.6.1
+#3 DONE 0.0s
+
+#4 [events-consumer 1/4] FROM docker.io/getsentry/sentry:23.6.1
+#4 DONE 0.0s
+
+#5 [events-consumer internal] load build context
+#5 transferring context: 297B done
+#5 DONE 0.0s
+
+#6 [events-consumer 2/4] COPY . /usr/src/sentry
+#6 CACHED
+
+#7 [events-consumer 3/4] RUN if [ -s /usr/src/sentry/enhance-image.sh ]; then     /usr/src/sentry/enhance-image.sh; fi
+#7 CACHED
+
+#8 [events-consumer 4/4] RUN if [ -s /usr/src/sentry/requirements.txt ]; then     echo "sentry/requirements.txt is deprecated, use sentry/enhance-image.sh - see https://github.com/getsentry/self-hosted#enhance-sentry-image";     pip install -r /usr/src/sentry/requirements.txt; fi
+#8 CACHED
+
+#9 [events-consumer] exporting to image
+#9 exporting layers done
+#9 writing image sha256:443b1f73a523486c3ead71796c047c6d2397965ba015803b38ce83ec7a69c26d done
+#9 naming to docker.io/library/sentry-self-hosted-local done
+#9 DONE 0.0s
+#1 [ingest-profiles internal] load build definition from Dockerfile
+#1 transferring dockerfile: 32B done
+#1 DONE 0.0s
+
+#2 [ingest-profiles internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [ingest-profiles internal] load metadata for docker.io/getsentry/sentry:23.6.1
+#3 DONE 0.0s
+
+#4 [ingest-profiles 1/4] FROM docker.io/getsentry/sentry:23.6.1
+#4 DONE 0.0s
+
+#5 [ingest-profiles internal] load build context
+#5 transferring context: 297B done
+#5 DONE 0.0s
+
+#6 [ingest-profiles 2/4] COPY . /usr/src/sentry
+#6 CACHED
+
+#7 [ingest-profiles 3/4] RUN if [ -s /usr/src/sentry/enhance-image.sh ]; then     /usr/src/sentry/enhance-image.sh; fi
+#7 CACHED
+
+#8 [ingest-profiles 4/4] RUN if [ -s /usr/src/sentry/requirements.txt ]; then     echo "sentry/requirements.txt is deprecated, use sentry/enhance-image.sh - see https://github.com/getsentry/self-hosted#enhance-sentry-image";     pip install -r /usr/src/sentry/requirements.txt; fi
+#8 CACHED
+
+#9 [ingest-profiles] exporting to image
+#9 exporting layers done
+#9 writing image sha256:66a6292d8d48b1a14ece43b07a682f95d125798e0968793308c1ea635b886b84 done
+#9 naming to docker.io/library/sentry-self-hosted-local done
+#9 DONE 0.0s
+#1 [ingest-replay-recordings internal] load build definition from Dockerfile
+#1 transferring dockerfile: 32B done
+#1 DONE 0.0s
+
+#2 [ingest-replay-recordings internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [ingest-replay-recordings internal] load metadata for docker.io/getsentry/sentry:23.6.1
+#3 DONE 0.0s
+
+#4 [ingest-replay-recordings 1/4] FROM docker.io/getsentry/sentry:23.6.1
+#4 DONE 0.0s
+
+#5 [ingest-replay-recordings internal] load build context
+#5 transferring context: 297B done
+#5 DONE 0.0s
+
+#6 [ingest-replay-recordings 2/4] COPY . /usr/src/sentry
+#6 CACHED
+
+#7 [ingest-replay-recordings 3/4] RUN if [ -s /usr/src/sentry/enhance-image.sh ]; then     /usr/src/sentry/enhance-image.sh; fi
+#7 CACHED
+
+#8 [ingest-replay-recordings 4/4] RUN if [ -s /usr/src/sentry/requirements.txt ]; then     echo "sentry/requirements.txt is deprecated, use sentry/enhance-image.sh - see https://github.com/getsentry/self-hosted#enhance-sentry-image";     pip install -r /usr/src/sentry/requirements.txt; fi
+#8 CACHED
+
+#9 [ingest-replay-recordings] exporting to image
+#9 exporting layers done
+#9 writing image sha256:b8542ae4c0765a3e05c617e3334110e9ef52619356e7e91fecb20d87795b429e done
+#9 naming to docker.io/library/sentry-self-hosted-local done
+#9 DONE 0.0s
+#1 [web internal] load build definition from Dockerfile
+#1 transferring dockerfile: 32B done
+#1 DONE 0.0s
+
+#2 [web internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [web internal] load metadata for docker.io/getsentry/sentry:23.6.1
+#3 DONE 0.0s
+
+#4 [web 1/4] FROM docker.io/getsentry/sentry:23.6.1
+#4 DONE 0.0s
+
+#5 [web internal] load build context
+#5 transferring context: 297B done
+#5 DONE 0.0s
+
+#6 [web 2/4] COPY . /usr/src/sentry
+#6 CACHED
+
+#7 [web 3/4] RUN if [ -s /usr/src/sentry/enhance-image.sh ]; then     /usr/src/sentry/enhance-image.sh; fi
+#7 CACHED
+
+#8 [web 4/4] RUN if [ -s /usr/src/sentry/requirements.txt ]; then     echo "sentry/requirements.txt is deprecated, use sentry/enhance-image.sh - see https://github.com/getsentry/self-hosted#enhance-sentry-image";     pip install -r /usr/src/sentry/requirements.txt; fi
+#8 CACHED
+
+#9 [web] exporting to image
+#9 exporting layers done
+#9 writing image sha256:cbd058c8e314e59c63a2b9db1a1ac00456f548a8ff54545b99f30e4b866da772 done
+#9 naming to docker.io/library/sentry-self-hosted-local done
+#9 DONE 0.0s
+#1 [post-process-forwarder-errors internal] load build definition from Dockerfile
+#1 transferring dockerfile: 32B done
+#1 DONE 0.0s
+
+#2 [post-process-forwarder-errors internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [post-process-forwarder-errors internal] load metadata for docker.io/getsentry/sentry:23.6.1
+#3 DONE 0.0s
+
+#4 [post-process-forwarder-errors 1/4] FROM docker.io/getsentry/sentry:23.6.1
+#4 DONE 0.0s
+
+#5 [post-process-forwarder-errors internal] load build context
+#5 transferring context: 297B done
+#5 DONE 0.0s
+
+#6 [post-process-forwarder-errors 2/4] COPY . /usr/src/sentry
+#6 CACHED
+
+#7 [post-process-forwarder-errors 3/4] RUN if [ -s /usr/src/sentry/enhance-image.sh ]; then     /usr/src/sentry/enhance-image.sh; fi
+#7 CACHED
+
+#8 [post-process-forwarder-errors 4/4] RUN if [ -s /usr/src/sentry/requirements.txt ]; then     echo "sentry/requirements.txt is deprecated, use sentry/enhance-image.sh - see https://github.com/getsentry/self-hosted#enhance-sentry-image";     pip install -r /usr/src/sentry/requirements.txt; fi
+#8 CACHED
+
+#9 [post-process-forwarder-errors] exporting to image
+#9 exporting layers done
+#9 writing image sha256:382d27b380a7932b96de45676b7167e33d8ae37694cb686fd4da84fb6ab59f82 done
+#9 naming to docker.io/library/sentry-self-hosted-local done
+#9 DONE 0.0s
+#1 [post-process-forwarder-transactions internal] load build definition from Dockerfile
+#1 transferring dockerfile: 32B done
+#1 DONE 0.0s
+
+#2 [post-process-forwarder-transactions internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [post-process-forwarder-transactions internal] load metadata for docker.io/getsentry/sentry:23.6.1
+#3 DONE 0.0s
+
+#4 [post-process-forwarder-transactions 1/4] FROM docker.io/getsentry/sentry:23.6.1
+#4 DONE 0.0s
+
+#5 [post-process-forwarder-transactions internal] load build context
+#5 transferring context: 297B done
+#5 DONE 0.0s
+
+#6 [post-process-forwarder-transactions 2/4] COPY . /usr/src/sentry
+#6 CACHED
+
+#7 [post-process-forwarder-transactions 3/4] RUN if [ -s /usr/src/sentry/enhance-image.sh ]; then     /usr/src/sentry/enhance-image.sh; fi
+#7 CACHED
+
+#8 [post-process-forwarder-transactions 4/4] RUN if [ -s /usr/src/sentry/requirements.txt ]; then     echo "sentry/requirements.txt is deprecated, use sentry/enhance-image.sh - see https://github.com/getsentry/self-hosted#enhance-sentry-image";     pip install -r /usr/src/sentry/requirements.txt; fi
+#8 CACHED
+
+#9 [post-process-forwarder-transactions] exporting to image
+#9 exporting layers done
+#9 writing image sha256:62f167f5e7d578cb5060c955925cc98ffefd0998a6838873cc9eb3028c0ac258
+#9 writing image sha256:62f167f5e7d578cb5060c955925cc98ffefd0998a6838873cc9eb3028c0ac258 done
+#9 naming to docker.io/library/sentry-self-hosted-local done
+#9 DONE 0.0s
+#1 [sentry-cleanup internal] load build definition from Dockerfile
+#1 transferring dockerfile: 469B done
+#1 DONE 0.0s
+
+#2 [sentry-cleanup internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [sentry-cleanup internal] load metadata for docker.io/library/sentry-self-hosted-local:latest
+#3 DONE 0.0s
+
+#4 [sentry-cleanup internal] load build context
+#4 transferring context: 658B done
+#4 DONE 0.0s
+
+#5 [sentry-cleanup 1/5] FROM docker.io/library/sentry-self-hosted-local
+#5 DONE 0.1s
+
+#6 [sentry-cleanup 2/5] RUN if [ -z "${http_proxy}" ]; then echo "Acquire::http::proxy "${http_proxy}";" >> /etc/apt/apt.conf; fi
+#6 DONE 0.3s
+
+#7 [sentry-cleanup 3/5] RUN if [ -z "${https_proxy}" ]; then echo "Acquire::https::proxy "${https_proxy}";" >> /etc/apt/apt.conf; fi
+#7 DONE 0.4s
+
+#8 [sentry-cleanup 4/5] RUN apt-get update && apt-get install -y --no-install-recommends cron &&     rm -r /var/lib/apt/lists/*
+#8 0.874 Get:1 http://deb.debian.org/debian bullseye InRelease [116 kB]
+#8 0.985 Get:2 http://deb.debian.org/debian-security bullseye-security InRelease [48.4 kB]
+#8 1.030 Get:3 http://deb.debian.org/debian bullseye-updates InRelease [44.1 kB]
+#8 1.173 Get:4 http://deb.debian.org/debian bullseye/main amd64 Packages [8183 kB]
+#8 1.462 Get:5 http://deb.debian.org/debian-security bullseye-security/main amd64 Packages [252 kB]
+#8 1.465 Get:6 http://deb.debian.org/debian bullseye-updates/main amd64 Packages [14.8 kB]
+#8 2.617 Fetched 8658 kB in 2s (4170 kB/s)
+#8 2.617 Reading package lists...
+#8 3.222 Reading package lists...
+#8 3.832 Building dependency tree...
+#8 3.989 Reading state information...
+#8 4.165 The following additional packages will be installed:
+#8 4.165   sensible-utils
+#8 4.166 Suggested packages:
+#8 4.166   anacron logrotate checksecurity
+#8 4.166 Recommended packages:
+#8 4.166   default-mta | mail-transport-agent
+#8 4.218 The following NEW packages will be installed:
+#8 4.227   cron sensible-utils
+#8 4.590 0 upgraded, 2 newly installed, 0 to remove and 2 not upgraded.
+#8 4.590 Need to get 114 kB of archives.
+#8 4.590 After this operation, 314 kB of additional disk space will be used.
+#8 4.590 Get:1 http://deb.debian.org/debian bullseye/main amd64 sensible-utils all 0.0.14 [14.8 kB]
+#8 4.657 Get:2 http://deb.debian.org/debian bullseye/main amd64 cron amd64 3.0pl1-137 [99.6 kB]
+#8 4.958 debconf: delaying package configuration, since apt-utils is not installed
+#8 4.994 Fetched 114 kB in 1s (225 kB/s)
+#8 5.019 Selecting previously unselected package sensible-utils.
+#8 5.019 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7034 files and directories currently installed.)
+#8 5.077 Preparing to unpack .../sensible-utils_0.0.14_all.deb ...
+#8 5.079 Unpacking sensible-utils (0.0.14) ...
+#8 5.108 Selecting previously unselected package cron.
+#8 5.111 Preparing to unpack .../cron_3.0pl1-137_amd64.deb ...
+#8 5.113 Unpacking cron (3.0pl1-137) ...
+#8 5.150 Setting up sensible-utils (0.0.14) ...
+#8 5.157 Setting up cron (3.0pl1-137) ...
+#8 5.214 Adding group `crontab' (GID 101) ...
+#8 5.233 Done.
+#8 5.264 invoke-rc.d: could not determine current runlevel
+#8 5.270 invoke-rc.d: policy-rc.d denied execution of start.
+#8 DONE 5.5s
+
+#9 [sentry-cleanup 5/5] COPY entrypoint.sh /entrypoint.sh
+#9 DONE 0.0s
+
+#10 [sentry-cleanup] exporting to image
+#10 exporting layers 0.0s done
+#10 writing image sha256:78639a5cc8fa8b0316d314e53b0feb26fd376ba0e8d5bfd4fc9e49edd5e31963
+#10 writing image sha256:78639a5cc8fa8b0316d314e53b0feb26fd376ba0e8d5bfd4fc9e49edd5e31963 done
+#10 naming to docker.io/library/sentry-cleanup-self-hosted-local done
+#10 DONE 0.1s
+#1 [subscription-consumer-events internal] load build definition from Dockerfile
+#1 transferring dockerfile: 32B done
+#1 DONE 0.0s
+
+#2 [subscription-consumer-events internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [subscription-consumer-events internal] load metadata for docker.io/getsentry/sentry:23.6.1
+#3 DONE 0.0s
+
+#4 [subscription-consumer-events internal] load build context
+#4 DONE 0.0s
+
+#5 [subscription-consumer-events 1/4] FROM docker.io/getsentry/sentry:23.6.1
+#5 DONE 0.0s
+
+#4 [subscription-consumer-events internal] load build context
+#4 transferring context: 297B done
+#4 DONE 0.0s
+
+#6 [subscription-consumer-events 2/4] COPY . /usr/src/sentry
+#6 CACHED
+
+#7 [subscription-consumer-events 3/4] RUN if [ -s /usr/src/sentry/enhance-image.sh ]; then     /usr/src/sentry/enhance-image.sh; fi
+#7 CACHED
+
+#8 [subscription-consumer-events 4/4] RUN if [ -s /usr/src/sentry/requirements.txt ]; then     echo "sentry/requirements.txt is deprecated, use sentry/enhance-image.sh - see https://github.com/getsentry/self-hosted#enhance-sentry-image";     pip install -r /usr/src/sentry/requirements.txt; fi
+#8 CACHED
+
+#9 [subscription-consumer-events] exporting to image
+#9 exporting layers done
+#9 writing image sha256:9df5b5249af74ae0576dbd722dcc0d734f4e7cc552eaf74c5be911806920863b done
+#9 naming to docker.io/library/sentry-self-hosted-local done
+#9 DONE 0.0s
+#1 [subscription-consumer-transactions internal] load build definition from Dockerfile
+#1 transferring dockerfile: 32B done
+#1 DONE 0.0s
+
+#2 [subscription-consumer-transactions internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [subscription-consumer-transactions internal] load metadata for docker.io/getsentry/sentry:23.6.1
+#3 DONE 0.0s
+
+#4 [subscription-consumer-transactions 1/4] FROM docker.io/getsentry/sentry:23.6.1
+#4 DONE 0.0s
+
+#5 [subscription-consumer-transactions internal] load build context
+#5 transferring context: 297B done
+#5 DONE 0.0s
+
+#6 [subscription-consumer-transactions 2/4] COPY . /usr/src/sentry
+#6 CACHED
+
+#7 [subscription-consumer-transactions 3/4] RUN if [ -s /usr/src/sentry/enhance-image.sh ]; then     /usr/src/sentry/enhance-image.sh; fi
+#7 CACHED
+
+#8 [subscription-consumer-transactions 4/4] RUN if [ -s /usr/src/sentry/requirements.txt ]; then     echo "sentry/requirements.txt is deprecated, use sentry/enhance-image.sh - see https://github.com/getsentry/self-hosted#enhance-sentry-image";     pip install -r /usr/src/sentry/requirements.txt; fi
+#8 CACHED
+
+#9 [subscription-consumer-transactions] exporting to image
+#9 exporting layers done
+#9 writing image sha256:7f8d3dc585363d95adef9c80948d06d90072986af6e6f1a966be9e897ca37af9 done
+#9 naming to docker.io/library/sentry-self-hosted-local done
+#9 DONE 0.0s
+#1 [symbolicator-cleanup internal] load build definition from Dockerfile
+#1 transferring dockerfile: 32B done
+#1 DONE 0.0s
+
+#2 [symbolicator-cleanup internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [symbolicator-cleanup internal] load metadata for docker.io/getsentry/symbolicator:23.6.1
+#3 DONE 0.0s
+
+#4 [symbolicator-cleanup internal] load build context
+#4 transferring context: 35B done
+#4 DONE 0.0s
+
+#5 [symbolicator-cleanup 1/5] FROM docker.io/getsentry/symbolicator:23.6.1
+#5 DONE 0.1s
+
+#6 [symbolicator-cleanup 2/5] RUN if [ -z "${http_proxy}" ]; then echo "Acquire::http::proxy "${http_proxy}";" >> /etc/apt/apt.conf; fi
+#6 DONE 0.3s
+
+#7 [symbolicator-cleanup 3/5] RUN if [ -z "${https_proxy}" ]; then echo "Acquire::https::proxy "${https_proxy}";" >> /etc/apt/apt.conf; fi
+#7 DONE 0.3s
+
+#8 [symbolicator-cleanup 4/5] RUN apt-get update && apt-get install -y --no-install-recommends cron &&     rm -r /var/lib/apt/lists/*
+#8 0.650 Get:1 http://deb.debian.org/debian bullseye InRelease [116 kB]
+#8 0.838 Get:2 http://deb.debian.org/debian-security bullseye-security InRelease [48.4 kB]
+#8 0.912 Get:3 http://deb.debian.org/debian bullseye-updates InRelease [44.1 kB]
+#8 1.019 Get:4 http://deb.debian.org/debian bullseye/main amd64 Packages [8183 kB]
+#8 1.485 Get:5 http://deb.debian.org/debian-security bullseye-security/main amd64 Packages [252 kB]
+#8 1.487 Get:6 http://deb.debian.org/debian bullseye-updates/main amd64 Packages [14.8 kB]
+#8 2.643 Fetched 8658 kB in 2s (3907 kB/s)
+#8 2.643 Reading package lists...
+#8 3.363 Reading package lists...
+#8 3.982 Building dependency tree...
+#8 4.133 Reading state information...
+#8 4.306 The following additional packages will be installed:
+#8 4.307   sensible-utils
+#8 4.308 Suggested packages:
+#8 4.308   anacron logrotate checksecurity
+#8 4.308 Recommended packages:
+#8 4.308   default-mta | mail-transport-agent
+#8 4.357 The following NEW packages will be installed:
+#8 4.358   cron sensible-utils
+#8 4.656 0 upgraded, 2 newly installed, 0 to remove and 0 not upgraded.
+#8 4.656 Need to get 114 kB of archives.
+#8 4.656 After this operation, 314 kB of additional disk space will be used.
+#8 4.656 Get:1 http://deb.debian.org/debian bullseye/main amd64 sensible-utils all 0.0.14 [14.8 kB]
+#8 4.723 Get:2 http://deb.debian.org/debian bullseye/main amd64 cron amd64 3.0pl1-137 [99.6 kB]
+#8 5.030 debconf: delaying package configuration, since apt-utils is not installed
+#8 5.075 Fetched 114 kB in 0s (254 kB/s)
+#8 5.102 Selecting previously unselected package sensible-utils.
+#8 5.102 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7091 files and directories currently installed.)
+#8 5.163 Preparing to unpack .../sensible-utils_0.0.14_all.deb ...
+#8 5.165 Unpacking sensible-utils (0.0.14) ...
+#8 5.192 Selecting previously unselected package cron.
+#8 5.194 Preparing to unpack .../cron_3.0pl1-137_amd64.deb ...
+#8 5.196 Unpacking cron (3.0pl1-137) ...
+#8 5.231 Setting up sensible-utils (0.0.14) ...
+#8 5.237 Setting up cron (3.0pl1-137) ...
+#8 5.292 Adding group `crontab' (GID 101) ...
+#8 5.310 Done.
+#8 5.338 invoke-rc.d: could not determine current runlevel
+#8 5.343 invoke-rc.d: policy-rc.d denied execution of start.
+#8 DONE 5.5s
+
+#9 [symbolicator-cleanup 5/5] COPY entrypoint.sh /entrypoint.sh
+#9 DONE 0.0s
+
+#10 [symbolicator-cleanup] exporting to image
+#10 exporting layers 0.1s done
+#10 writing image sha256:a3c14afb8534bf24e444c0d12ebb0efb7dddba83b91ccb59c944a784855e349f done
+#10 naming to docker.io/library/symbolicator-cleanup-self-hosted-local done
+#10 DONE 0.1s
+#1 [transactions-consumer internal] load build definition from Dockerfile
+#1 transferring dockerfile: 32B done
+#1 DONE 0.0s
+
+#2 [transactions-consumer internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [transactions-consumer internal] load metadata for docker.io/getsentry/sentry:23.6.1
+#3 DONE 0.0s
+
+#4 [transactions-consumer internal] load build context
+#4 DONE 0.0s
+
+#5 [transactions-consumer 1/4] FROM docker.io/getsentry/sentry:23.6.1
+#5 DONE 0.0s
+
+#4 [transactions-consumer internal] load build context
+#4 transferring context: 297B done
+#4 DONE 0.0s
+
+#6 [transactions-consumer 2/4] COPY . /usr/src/sentry
+#6 CACHED
+
+#7 [transactions-consumer 3/4] RUN if [ -s /usr/src/sentry/enhance-image.sh ]; then     /usr/src/sentry/enhance-image.sh; fi
+#7 CACHED
+
+#8 [transactions-consumer 4/4] RUN if [ -s /usr/src/sentry/requirements.txt ]; then     echo "sentry/requirements.txt is deprecated, use sentry/enhance-image.sh - see https://github.com/getsentry/self-hosted#enhance-sentry-image";     pip install -r /usr/src/sentry/requirements.txt; fi
+#8 CACHED
+
+#9 [transactions-consumer] exporting to image
+#9 exporting layers done
+#9 writing image sha256:c68cef4785c74264bd86cce135baafb78ab2496e17a1ac8922010274f04760b5 done
+#9 naming to docker.io/library/sentry-self-hosted-local done
+#9 DONE 0.0s
+#1 [worker internal] load build definition from Dockerfile
+#1 transferring dockerfile: 32B done
+#1 DONE 0.0s
+
+#2 [worker internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [worker internal] load metadata for docker.io/getsentry/sentry:23.6.1
+#3 DONE 0.0s
+
+#4 [worker 1/4] FROM docker.io/getsentry/sentry:23.6.1
+#4 DONE 0.0s
+
+#5 [worker internal] load build context
+#5 transferring context: 297B done
+#5 DONE 0.0s
+
+#6 [worker 2/4] COPY . /usr/src/sentry
+#6 CACHED
+
+#7 [worker 3/4] RUN if [ -s /usr/src/sentry/enhance-image.sh ]; then     /usr/src/sentry/enhance-image.sh; fi
+#7 CACHED
+
+#8 [worker 4/4] RUN if [ -s /usr/src/sentry/requirements.txt ]; then     echo "sentry/requirements.txt is deprecated, use sentry/enhance-image.sh - see https://github.com/getsentry/self-hosted#enhance-sentry-image";     pip install -r /usr/src/sentry/requirements.txt; fi
+#8 CACHED
+
+#9 [worker] exporting to image
+#9 exporting layers done
+#9 writing image sha256:895e2763f4976977c06678b4a625777dc7a5b601062829a508462cf187764013 done
+#9 naming to docker.io/library/sentry-self-hosted-local done
+#9 DONE 0.0s
+
+Docker images built.
+
+▶ Downloading and installing wal2json ...
+Unable to find image 'curlimages/curl:7.77.0' locally
+7.77.0: Pulling from curlimages/curl
+339de151aab4: Pulling fs layer
+9576f9a419e9: Pulling fs layer
+5b67e0e9bce9: Pulling fs layer
+7c0640a6c519: Pulling fs layer
+1d8f7d50664a: Pulling fs layer
+7c0640a6c519: Waiting
+3ce74da83aeb: Pulling fs layer
+1d8f7d50664a: Waiting
+7094fabf5e16: Pulling fs layer
+2f4d0b649c1f: Pulling fs layer
+110e7f874674: Pulling fs layer
+3ce74da83aeb: Waiting
+7094fabf5e16: Waiting
+2f4d0b649c1f: Waiting
+110e7f874674: Waiting
+9576f9a419e9: Download complete
+339de151aab4: Verifying Checksum
+339de151aab4: Download complete
+339de151aab4: Pull complete
+5b67e0e9bce9: Verifying Checksum
+5b67e0e9bce9: Download complete
+9576f9a419e9: Pull complete
+5b67e0e9bce9: Pull complete
+7c0640a6c519: Download complete
+7c0640a6c519: Pull complete
+1d8f7d50664a: Download complete
+1d8f7d50664a: Pull complete
+3ce74da83aeb: Verifying Checksum
+3ce74da83aeb: Download complete
+3ce74da83aeb: Pull complete
+7094fabf5e16: Verifying Checksum
+7094fabf5e16: Download complete
+2f4d0b649c1f: Verifying Checksum
+2f4d0b649c1f: Download complete
+7094fabf5e16: Pull complete
+2f4d0b649c1f: Pull complete
+110e7f874674: Verifying Checksum
+110e7f874674: Download complete
+110e7f874674: Pull complete
+Digest: sha256:6e0a786e3e5181df00eaf3a0a1749c18a6bb20b01c9bd192ea72176ce8a1c94b
+Status: Downloaded newer image for curlimages/curl:7.77.0
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100  101k  100  101k    0     0   137k      0 --:--:-- --:--:-- --:--:--  137k
+
+▶ Bootstrapping and migrating Snuba ...
+ Container sentry-self-hosted-zookeeper-1  Creating
+ Container sentry-self-hosted-redis-1  Creating
+ Container sentry-self-hosted-clickhouse-1  Creating
+ Container sentry-self-hosted-clickhouse-1  Created
+ Container sentry-self-hosted-zookeeper-1  Created
+ Container sentry-self-hosted-kafka-1  Creating
+ Container sentry-self-hosted-redis-1  Created
+ Container sentry-self-hosted-kafka-1  Created
+ Container sentry-self-hosted-clickhouse-1  Starting
+ Container sentry-self-hosted-redis-1  Starting
+ Container sentry-self-hosted-zookeeper-1  Starting
+ Container sentry-self-hosted-zookeeper-1  Started
+ Container sentry-self-hosted-zookeeper-1  Waiting
+ Container sentry-self-hosted-redis-1  Started
+ Container sentry-self-hosted-clickhouse-1  Started
+ Container sentry-self-hosted-zookeeper-1  Healthy
+ Container sentry-self-hosted-kafka-1  Starting
+ Container sentry-self-hosted-kafka-1  Started
+2023-07-06 10:26:56,400 Initializing Snuba...
+2023-07-06 10:27:00,079 Snuba initialization took 3.6826546639204025s
+2023-07-06 10:27:00,560 Initializing Snuba...
+2023-07-06 10:27:03,792 Snuba initialization took 3.2342272475361824s
+2023-07-06 10:27:03,794 Attempting to connect to Kafka (attempt 0)...
+2023-07-06 10:27:03,854 Connected to Kafka on attempt 0
+2023-07-06 10:27:03,855 Creating Kafka topics...
+2023-07-06 10:27:04,841 Topic events created
+2023-07-06 10:27:04,841 Topic event-replacements created
+2023-07-06 10:27:04,841 Topic snuba-commit-log created
+2023-07-06 10:27:04,841 Topic cdc created
+2023-07-06 10:27:04,842 Topic transactions created
+2023-07-06 10:27:04,842 Topic snuba-transactions-commit-log created
+2023-07-06 10:27:04,842 Topic snuba-metrics created
+2023-07-06 10:27:04,842 Topic outcomes created
+2023-07-06 10:27:04,842 Topic ingest-sessions created
+2023-07-06 10:27:04,842 Topic snuba-sessions-commit-log created
+2023-07-06 10:27:04,842 Topic snuba-metrics-commit-log created
+2023-07-06 10:27:04,842 Topic scheduled-subscriptions-events created
+2023-07-06 10:27:04,842 Topic scheduled-subscriptions-transactions created
+2023-07-06 10:27:04,842 Topic scheduled-subscriptions-sessions created
+2023-07-06 10:27:04,843 Topic scheduled-subscriptions-metrics created
+2023-07-06 10:27:04,843 Topic scheduled-subscriptions-generic-metrics-sets created
+2023-07-06 10:27:04,843 Topic scheduled-subscriptions-generic-metrics-distributions created
+2023-07-06 10:27:04,843 Topic scheduled-subscriptions-generic-metrics-counters created
+2023-07-06 10:27:04,843 Topic events-subscription-results created
+2023-07-06 10:27:04,843 Topic transactions-subscription-results created
+2023-07-06 10:27:04,843 Topic sessions-subscription-results created
+2023-07-06 10:27:04,843 Topic metrics-subscription-results created
+2023-07-06 10:27:04,843 Topic generic-metrics-subscription-results created
+2023-07-06 10:27:04,843 Topic snuba-queries created
+2023-07-06 10:27:04,843 Topic processed-profiles created
+2023-07-06 10:27:04,844 Topic profiles-call-tree created
+2023-07-06 10:27:04,844 Topic ingest-replay-events created
+2023-07-06 10:27:04,844 Topic snuba-generic-metrics created
+2023-07-06 10:27:04,844 Topic snuba-generic-metrics-sets-commit-log created
+2023-07-06 10:27:04,844 Topic snuba-generic-metrics-distributions-commit-log created
+2023-07-06 10:27:04,844 Topic snuba-generic-metrics-counters-commit-log created
+2023-07-06 10:27:04,844 Topic generic-events created
+2023-07-06 10:27:04,844 Topic snuba-generic-events-commit-log created
+2023-07-06 10:27:04,844 Topic snuba-attribution created
+2023-07-06 10:27:04,844 Topic snuba-dead-letter-metrics created
+2023-07-06 10:27:04,844 Topic snuba-dead-letter-metrics-sets created
+2023-07-06 10:27:04,845 Topic snuba-dead-letter-metrics-counters created
+2023-07-06 10:27:04,845 Topic snuba-dead-letter-metrics-distributions created
+2023-07-06 10:27:04,845 Topic snuba-dead-letter-sessions created
+2023-07-06 10:27:04,845 Topic snuba-dead-letter-generic-metrics created
+2023-07-06 10:27:04,845 Topic snuba-dead-letter-replays created
+2023-07-06 10:27:04,845 Topic snuba-dead-letter-generic-events created
+2023-07-06 10:27:04,845 Topic snuba-dead-letter-querylog created
+ Container sentry-self-hosted-zookeeper-1  Running
+ Container sentry-self-hosted-redis-1  Running
+ Container sentry-self-hosted-kafka-1  Running
+ Container sentry-self-hosted-clickhouse-1  Running
+ Container sentry-self-hosted-zookeeper-1  Waiting
+ Container sentry-self-hosted-zookeeper-1  Healthy
+2023-07-06 10:27:07,110 Initializing Snuba...
+2023-07-06 10:27:10,769 Snuba initialization took 3.661872126162052s
+2023-07-06 10:27:11,293 Initializing Snuba...
+2023-07-06 10:27:14,744 Snuba initialization took 3.4549029171466827s
+{"module": "snuba.migrations.runner", "event": "Running migration: 0001_migrations", "severity": "info", "timestamp": "2023-07-06T10:27:14.840719Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0001_migrations", "severity": "info", "timestamp": "2023-07-06T10:27:14.845594Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0001_events_initial", "severity": "info", "timestamp": "2023-07-06T10:27:14.859927Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0001_events_initial", "severity": "info", "timestamp": "2023-07-06T10:27:14.873646Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0002_events_onpremise_compatibility", "severity": "info", "timestamp": "2023-07-06T10:27:14.880290Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0002_events_onpremise_compatibility", "severity": "info", "timestamp": "2023-07-06T10:27:14.967037Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0003_errors", "severity": "info", "timestamp": "2023-07-06T10:27:14.974974Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0003_errors", "severity": "info", "timestamp": "2023-07-06T10:27:14.986018Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0004_errors_onpremise_compatibility", "severity": "info", "timestamp": "2023-07-06T10:27:14.990720Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0004_errors_onpremise_compatibility", "severity": "info", "timestamp": "2023-07-06T10:27:15.001116Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0005_events_tags_hash_map", "severity": "info", "timestamp": "2023-07-06T10:27:15.009299Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0005_events_tags_hash_map", "severity": "info", "timestamp": "2023-07-06T10:27:15.023075Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0006_errors_tags_hash_map", "severity": "info", "timestamp": "2023-07-06T10:27:15.029082Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0006_errors_tags_hash_map", "severity": "info", "timestamp": "2023-07-06T10:27:15.040422Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0007_groupedmessages", "severity": "info", "timestamp": "2023-07-06T10:27:15.048020Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0007_groupedmessages", "severity": "info", "timestamp": "2023-07-06T10:27:15.056668Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0008_groupassignees", "severity": "info", "timestamp": "2023-07-06T10:27:15.062508Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0008_groupassignees", "severity": "info", "timestamp": "2023-07-06T10:27:15.070685Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0009_errors_add_http_fields", "severity": "info", "timestamp": "2023-07-06T10:27:15.076413Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0009_errors_add_http_fields", "severity": "info", "timestamp": "2023-07-06T10:27:15.093018Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0010_groupedmessages_onpremise_compatibility", "severity": "info", "timestamp": "2023-07-06T10:27:15.099427Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0010_groupedmessages_onpremise_compatibility", "severity": "info", "timestamp": "2023-07-06T10:27:15.105862Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0011_rebuild_errors", "severity": "info", "timestamp": "2023-07-06T10:27:15.112959Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0011_rebuild_errors", "severity": "info", "timestamp": "2023-07-06T10:27:15.137511Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0012_errors_make_level_nullable", "severity": "info", "timestamp": "2023-07-06T10:27:15.142699Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0012_errors_make_level_nullable", "severity": "info", "timestamp": "2023-07-06T10:27:15.152673Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0013_errors_add_hierarchical_hashes", "severity": "info", "timestamp": "2023-07-06T10:27:15.158829Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0013_errors_add_hierarchical_hashes", "severity": "info", "timestamp": "2023-07-06T10:27:15.180388Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0014_backfill_errors", "severity": "info", "timestamp": "2023-07-06T10:27:15.188848Z"}
+2023-07-06 10:27:15,193 Initializing Snuba...
+{"module": "snuba.migrations.runner", "event": "Starting migration from 2023-07-03", "severity": "info", "timestamp": "2023-07-06T10:27:15.214771Z"}
+{"module": "snuba.migrations.runner", "event": "Migrated 2023-07-03. (1 of 13 partitions done)", "severity": "info", "timestamp": "2023-07-06T10:27:15.234458Z"}
+{"module": "snuba.migrations.runner", "event": "Migrated 2023-06-26. (2 of 13 partitions done)", "severity": "info", "timestamp": "2023-07-06T10:27:15.252031Z"}
+{"module": "snuba.migrations.runner", "event": "Migrated 2023-06-19. (3 of 13 partitions done)", "severity": "info", "timestamp": "2023-07-06T10:27:15.269021Z"}
+{"module": "snuba.migrations.runner", "event": "Migrated 2023-06-12. (4 of 13 partitions done)", "severity": "info", "timestamp": "2023-07-06T10:27:15.288265Z"}
+{"module": "snuba.migrations.runner", "event": "Migrated 2023-06-05. (5 of 13 partitions done)", "severity": "info", "timestamp": "2023-07-06T10:27:15.308291Z"}
+{"module": "snuba.migrations.runner", "event": "Migrated 2023-05-29. (6 of 13 partitions done)", "severity": "info", "timestamp": "2023-07-06T10:27:15.329819Z"}
+{"module": "snuba.migrations.runner", "event": "Migrated 2023-05-22. (7 of 13 partitions done)", "severity": "info", "timestamp": "2023-07-06T10:27:15.348909Z"}
+{"module": "snuba.migrations.runner", "event": "Migrated 2023-05-15. (8 of 13 partitions done)", "severity": "info", "timestamp": "2023-07-06T10:27:15.370786Z"}
+{"module": "snuba.migrations.runner", "event": "Migrated 2023-05-08. (9 of 13 partitions done)", "severity": "info", "timestamp": "2023-07-06T10:27:15.388820Z"}
+{"module": "snuba.migrations.runner", "event": "Migrated 2023-05-01. (10 of 13 partitions done)", "severity": "info", "timestamp": "2023-07-06T10:27:15.411708Z"}
+{"module": "snuba.migrations.runner", "event": "Migrated 2023-04-24. (11 of 13 partitions done)", "severity": "info", "timestamp": "2023-07-06T10:27:15.435493Z"}
+{"module": "snuba.migrations.runner", "event": "Migrated 2023-04-17. (12 of 13 partitions done)", "severity": "info", "timestamp": "2023-07-06T10:27:15.453129Z"}
+{"module": "snuba.migrations.runner", "event": "Migrated 2023-04-10. (13 of 13 partitions done)", "severity": "info", "timestamp": "2023-07-06T10:27:15.471432Z"}
+{"module": "snuba.migrations.runner", "event": "Done. Optimizing.", "severity": "info", "timestamp": "2023-07-06T10:27:15.471700Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0014_backfill_errors", "severity": "info", "timestamp": "2023-07-06T10:27:15.474685Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0015_truncate_events", "severity": "info", "timestamp": "2023-07-06T10:27:15.481441Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0015_truncate_events", "severity": "info", "timestamp": "2023-07-06T10:27:15.486464Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0016_drop_legacy_events", "severity": "info", "timestamp": "2023-07-06T10:27:15.493665Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0016_drop_legacy_events", "severity": "info", "timestamp": "2023-07-06T10:27:15.500124Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0017_errors_add_indexes", "severity": "info", "timestamp": "2023-07-06T10:27:15.506638Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0017_errors_add_indexes", "severity": "info", "timestamp": "2023-07-06T10:27:15.537414Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0018_errors_ro_add_tags_hash_map", "severity": "info", "timestamp": "2023-07-06T10:27:15.544202Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0018_errors_ro_add_tags_hash_map", "severity": "info", "timestamp": "2023-07-06T10:27:15.548879Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0019_add_replay_id_column", "severity": "info", "timestamp": "2023-07-06T10:27:15.554615Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0019_add_replay_id_column", "severity": "info", "timestamp": "2023-07-06T10:27:15.567102Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0020_add_main_thread_column", "severity": "info", "timestamp": "2023-07-06T10:27:15.573434Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0020_add_main_thread_column", "severity": "info", "timestamp": "2023-07-06T10:27:15.584765Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0021_add_replay_id_errors_ro", "severity": "info", "timestamp": "2023-07-06T10:27:15.590580Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0021_add_replay_id_errors_ro", "severity": "info", "timestamp": "2023-07-06T10:27:15.594424Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0022_add_main_thread_column_errors_ro", "severity": "info", "timestamp": "2023-07-06T10:27:15.599485Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0022_add_main_thread_column_errors_ro", "severity": "info", "timestamp": "2023-07-06T10:27:15.605039Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0023_add_trace_sampled_num_processing_errors_columns", "severity": "info", "timestamp": "2023-07-06T10:27:15.611029Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0023_add_trace_sampled_num_processing_errors_columns", "severity": "info", "timestamp": "2023-07-06T10:27:15.633029Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0024_add_trace_sampled_num_processing_errors_columns_ro", "severity": "info", "timestamp": "2023-07-06T10:27:15.639747Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0024_add_trace_sampled_num_processing_errors_columns_ro", "severity": "info", "timestamp": "2023-07-06T10:27:15.643761Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0001_transactions", "severity": "info", "timestamp": "2023-07-06T10:27:15.650634Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0001_transactions", "severity": "info", "timestamp": "2023-07-06T10:27:15.660788Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0002_transactions_onpremise_fix_orderby_and_partitionby", "severity": "info", "timestamp": "2023-07-06T10:27:15.668430Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0002_transactions_onpremise_fix_orderby_and_partitionby", "severity": "info", "timestamp": "2023-07-06T10:27:15.674868Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0003_transactions_onpremise_fix_columns", "severity": "info", "timestamp": "2023-07-06T10:27:15.681469Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0003_transactions_onpremise_fix_columns", "severity": "info", "timestamp": "2023-07-06T10:27:15.767273Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0004_transactions_add_tags_hash_map", "severity": "info", "timestamp": "2023-07-06T10:27:15.772718Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0004_transactions_add_tags_hash_map", "severity": "info", "timestamp": "2023-07-06T10:27:15.782745Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0005_transactions_add_measurements", "severity": "info", "timestamp": "2023-07-06T10:27:15.789311Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0005_transactions_add_measurements", "severity": "info", "timestamp": "2023-07-06T10:27:15.799668Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0006_transactions_add_http_fields", "severity": "info", "timestamp": "2023-07-06T10:27:15.806061Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0006_transactions_add_http_fields", "severity": "info", "timestamp": "2023-07-06T10:27:15.821756Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0007_transactions_add_discover_cols", "severity": "info", "timestamp": "2023-07-06T10:27:15.827593Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0007_transactions_add_discover_cols", "severity": "info", "timestamp": "2023-07-06T10:27:15.853206Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0008_transactions_add_timestamp_index", "severity": "info", "timestamp": "2023-07-06T10:27:15.860482Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0008_transactions_add_timestamp_index", "severity": "info", "timestamp": "2023-07-06T10:27:15.870997Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0009_transactions_fix_title_and_message", "severity": "info", "timestamp": "2023-07-06T10:27:15.878287Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0009_transactions_fix_title_and_message", "severity": "info", "timestamp": "2023-07-06T10:27:15.895412Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0010_transactions_nullable_trace_id", "severity": "info", "timestamp": "2023-07-06T10:27:15.902079Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0010_transactions_nullable_trace_id", "severity": "info", "timestamp": "2023-07-06T10:27:15.912346Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0011_transactions_add_span_op_breakdowns", "severity": "info", "timestamp": "2023-07-06T10:27:15.918544Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0011_transactions_add_span_op_breakdowns", "severity": "info", "timestamp": "2023-07-06T10:27:15.927543Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0012_transactions_add_spans", "severity": "info", "timestamp": "2023-07-06T10:27:15.934589Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0012_transactions_add_spans", "severity": "info", "timestamp": "2023-07-06T10:27:15.972441Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0013_transactions_reduce_spans_exclusive_time", "severity": "info", "timestamp": "2023-07-06T10:27:15.978244Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0013_transactions_reduce_spans_exclusive_time", "severity": "info", "timestamp": "2023-07-06T10:27:15.998083Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0014_transactions_remove_flattened_columns", "severity": "info", "timestamp": "2023-07-06T10:27:16.004540Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0014_transactions_remove_flattened_columns", "severity": "info", "timestamp": "2023-07-06T10:27:16.025524Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0015_transactions_add_source_column", "severity": "info", "timestamp": "2023-07-06T10:27:16.031710Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0015_transactions_add_source_column", "severity": "info", "timestamp": "2023-07-06T10:27:16.046272Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0016_transactions_add_group_ids_column", "severity": "info", "timestamp": "2023-07-06T10:27:16.053260Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0016_transactions_add_group_ids_column", "severity": "info", "timestamp": "2023-07-06T10:27:16.065006Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0017_transactions_add_app_start_type_column", "severity": "info", "timestamp": "2023-07-06T10:27:16.072018Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0017_transactions_add_app_start_type_column", "severity": "info", "timestamp": "2023-07-06T10:27:16.085967Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0018_transactions_add_profile_id", "severity": "info", "timestamp": "2023-07-06T10:27:16.092670Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0018_transactions_add_profile_id", "severity": "info", "timestamp": "2023-07-06T10:27:16.104002Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0019_transactions_add_indexes_and_context_hash", "severity": "info", "timestamp": "2023-07-06T10:27:16.111344Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0019_transactions_add_indexes_and_context_hash", "severity": "info", "timestamp": "2023-07-06T10:27:16.300619Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0020_transactions_add_codecs", "severity": "info", "timestamp": "2023-07-06T10:27:16.306551Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0020_transactions_add_codecs", "severity": "info", "timestamp": "2023-07-06T10:27:16.329882Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0021_transactions_add_replay_id", "severity": "info", "timestamp": "2023-07-06T10:27:16.335518Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0021_transactions_add_replay_id", "severity": "info", "timestamp": "2023-07-06T10:27:16.349575Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0001_discover_merge_table", "severity": "info", "timestamp": "2023-07-06T10:27:16.359148Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0001_discover_merge_table", "severity": "info", "timestamp": "2023-07-06T10:27:16.366620Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0002_discover_add_deleted_tags_hash_map", "severity": "info", "timestamp": "2023-07-06T10:27:16.372719Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0002_discover_add_deleted_tags_hash_map", "severity": "info", "timestamp": "2023-07-06T10:27:16.384236Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0003_discover_fix_user_column", "severity": "info", "timestamp": "2023-07-06T10:27:16.391383Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0003_discover_fix_user_column", "severity": "info", "timestamp": "2023-07-06T10:27:16.398795Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0004_discover_fix_title_and_message", "severity": "info", "timestamp": "2023-07-06T10:27:16.404623Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0004_discover_fix_title_and_message", "severity": "info", "timestamp": "2023-07-06T10:27:16.414856Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0005_discover_fix_transaction_name", "severity": "info", "timestamp": "2023-07-06T10:27:16.420514Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0005_discover_fix_transaction_name", "severity": "info", "timestamp": "2023-07-06T10:27:16.428973Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0006_discover_add_trace_id", "severity": "info", "timestamp": "2023-07-06T10:27:16.437160Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0006_discover_add_trace_id", "severity": "info", "timestamp": "2023-07-06T10:27:16.445223Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0007_discover_add_span_id", "severity": "info", "timestamp": "2023-07-06T10:27:16.450914Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0007_discover_add_span_id", "severity": "info", "timestamp": "2023-07-06T10:27:16.457908Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0001_outcomes", "severity": "info", "timestamp": "2023-07-06T10:27:16.463885Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0001_outcomes", "severity": "info", "timestamp": "2023-07-06T10:27:16.476993Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0002_outcomes_remove_size_and_bytes", "severity": "info", "timestamp": "2023-07-06T10:27:16.482586Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0002_outcomes_remove_size_and_bytes", "severity": "info", "timestamp": "2023-07-06T10:27:16.493574Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0003_outcomes_add_category_and_quantity", "severity": "info", "timestamp": "2023-07-06T10:27:16.500420Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0003_outcomes_add_category_and_quantity", "severity": "info", "timestamp": "2023-07-06T10:27:16.516591Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0004_outcomes_matview_additions", "severity": "info", "timestamp": "2023-07-06T10:27:16.524437Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0004_outcomes_matview_additions", "severity": "info", "timestamp": "2023-07-06T10:27:16.534537Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0005_outcomes_ttl", "severity": "info", "timestamp": "2023-07-06T10:27:16.540837Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0005_outcomes_ttl", "severity": "info", "timestamp": "2023-07-06T10:27:16.554453Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0006_outcomes_add_size_col", "severity": "info", "timestamp": "2023-07-06T10:27:16.560827Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0006_outcomes_add_size_col", "severity": "info", "timestamp": "2023-07-06T10:27:16.574146Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0007_outcomes_add_event_id_ttl_codec", "severity": "info", "timestamp": "2023-07-06T10:27:16.579441Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0007_outcomes_add_event_id_ttl_codec", "severity": "info", "timestamp": "2023-07-06T10:27:16.587358Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0008_outcomes_add_indexes", "severity": "info", "timestamp": "2023-07-06T10:27:16.592954Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0008_outcomes_add_indexes", "severity": "info", "timestamp": "2023-07-06T10:27:16.604292Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0001_metrics_buckets", "severity": "info", "timestamp": "2023-07-06T10:27:16.614907Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0001_metrics_buckets", "severity": "info", "timestamp": "2023-07-06T10:27:16.623349Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0002_metrics_sets", "severity": "info", "timestamp": "2023-07-06T10:27:16.629431Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0002_metrics_sets", "severity": "info", "timestamp": "2023-07-06T10:27:16.651262Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0003_counters_to_buckets", "severity": "info", "timestamp": "2023-07-06T10:27:16.657003Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0003_counters_to_buckets", "severity": "info", "timestamp": "2023-07-06T10:27:16.665342Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0004_metrics_counters", "severity": "info", "timestamp": "2023-07-06T10:27:16.671767Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0004_metrics_counters", "severity": "info", "timestamp": "2023-07-06T10:27:16.694152Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0005_metrics_distributions_buckets", "severity": "info", "timestamp": "2023-07-06T10:27:16.701993Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0005_metrics_distributions_buckets", "severity": "info", "timestamp": "2023-07-06T10:27:16.710090Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0006_metrics_distributions", "severity": "info", "timestamp": "2023-07-06T10:27:16.716185Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0006_metrics_distributions", "severity": "info", "timestamp": "2023-07-06T10:27:16.742793Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0007_metrics_sets_granularity_10", "severity": "info", "timestamp": "2023-07-06T10:27:16.750136Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0007_metrics_sets_granularity_10", "severity": "info", "timestamp": "2023-07-06T10:27:16.758895Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0008_metrics_counters_granularity_10", "severity": "info", "timestamp": "2023-07-06T10:27:16.764484Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0008_metrics_counters_granularity_10", "severity": "info", "timestamp": "2023-07-06T10:27:16.774119Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0009_metrics_distributions_granularity_10", "severity": "info", "timestamp": "2023-07-06T10:27:16.783269Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0009_metrics_distributions_granularity_10", "severity": "info", "timestamp": "2023-07-06T10:27:16.790856Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0010_metrics_sets_granularity_1h", "severity": "info", "timestamp": "2023-07-06T10:27:16.796855Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0010_metrics_sets_granularity_1h", "severity": "info", "timestamp": "2023-07-06T10:27:16.804066Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0011_metrics_counters_granularity_1h", "severity": "info", "timestamp": "2023-07-06T10:27:16.810923Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0011_metrics_counters_granularity_1h", "severity": "info", "timestamp": "2023-07-06T10:27:16.818547Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0012_metrics_distributions_granularity_1h", "severity": "info", "timestamp": "2023-07-06T10:27:16.824169Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0012_metrics_distributions_granularity_1h", "severity": "info", "timestamp": "2023-07-06T10:27:16.831507Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0013_metrics_sets_granularity_1d", "severity": "info", "timestamp": "2023-07-06T10:27:16.837123Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0013_metrics_sets_granularity_1d", "severity": "info", "timestamp": "2023-07-06T10:27:16.844511Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0014_metrics_counters_granularity_1d", "severity": "info", "timestamp": "2023-07-06T10:27:16.850224Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0014_metrics_counters_granularity_1d", "severity": "info", "timestamp": "2023-07-06T10:27:16.857766Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0015_metrics_distributions_granularity_1d", "severity": "info", "timestamp": "2023-07-06T10:27:16.864706Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0015_metrics_distributions_granularity_1d", "severity": "info", "timestamp": "2023-07-06T10:27:16.873096Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0016_metrics_sets_consolidated_granularity", "severity": "info", "timestamp": "2023-07-06T10:27:16.878380Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0016_metrics_sets_consolidated_granularity", "severity": "info", "timestamp": "2023-07-06T10:27:16.885758Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0017_metrics_counters_consolidated_granularity", "severity": "info", "timestamp": "2023-07-06T10:27:16.891170Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0017_metrics_counters_consolidated_granularity", "severity": "info", "timestamp": "2023-07-06T10:27:16.899485Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0018_metrics_distributions_consolidated_granularity", "severity": "info", "timestamp": "2023-07-06T10:27:16.905382Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0018_metrics_distributions_consolidated_granularity", "severity": "info", "timestamp": "2023-07-06T10:27:16.913047Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0019_aggregate_tables_add_ttl", "severity": "info", "timestamp": "2023-07-06T10:27:16.919007Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0019_aggregate_tables_add_ttl", "severity": "info", "timestamp": "2023-07-06T10:27:16.936466Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0020_polymorphic_buckets_table", "severity": "info", "timestamp": "2023-07-06T10:27:16.942846Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0020_polymorphic_buckets_table", "severity": "info", "timestamp": "2023-07-06T10:27:16.952334Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0021_polymorphic_bucket_materialized_views", "severity": "info", "timestamp": "2023-07-06T10:27:16.957892Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0021_polymorphic_bucket_materialized_views", "severity": "info", "timestamp": "2023-07-06T10:27:16.972157Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0022_repartition_polymorphic_table", "severity": "info", "timestamp": "2023-07-06T10:27:16.978578Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0022_repartition_polymorphic_table", "severity": "info", "timestamp": "2023-07-06T10:27:16.987881Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0023_polymorphic_repartitioned_bucket_matview", "severity": "info", "timestamp": "2023-07-06T10:27:16.995670Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0023_polymorphic_repartitioned_bucket_matview", "severity": "info", "timestamp": "2023-07-06T10:27:17.011407Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0024_metrics_distributions_add_histogram", "severity": "info", "timestamp": "2023-07-06T10:27:17.018202Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0024_metrics_distributions_add_histogram", "severity": "info", "timestamp": "2023-07-06T10:27:17.037027Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0025_metrics_counters_aggregate_v2", "severity": "info", "timestamp": "2023-07-06T10:27:17.042823Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0025_metrics_counters_aggregate_v2", "severity": "info", "timestamp": "2023-07-06T10:27:17.062752Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0026_metrics_counters_v2_writing_matview", "severity": "info", "timestamp": "2023-07-06T10:27:17.071055Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0026_metrics_counters_v2_writing_matview", "severity": "info", "timestamp": "2023-07-06T10:27:17.077952Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0027_fix_migration_0026", "severity": "info", "timestamp": "2023-07-06T10:27:17.082860Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0027_fix_migration_0026", "severity": "info", "timestamp": "2023-07-06T10:27:17.091636Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0028_metrics_sets_aggregate_v2", "severity": "info", "timestamp": "2023-07-06T10:27:17.098487Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0028_metrics_sets_aggregate_v2", "severity": "info", "timestamp": "2023-07-06T10:27:17.127761Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0029_metrics_distributions_aggregate_v2", "severity": "info", "timestamp": "2023-07-06T10:27:17.135635Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0029_metrics_distributions_aggregate_v2", "severity": "info", "timestamp": "2023-07-06T10:27:17.159987Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0030_metrics_distributions_v2_writing_mv", "severity": "info", "timestamp": "2023-07-06T10:27:17.167936Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0030_metrics_distributions_v2_writing_mv", "severity": "info", "timestamp": "2023-07-06T10:27:17.176098Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0031_metrics_sets_v2_writing_mv", "severity": "info", "timestamp": "2023-07-06T10:27:17.184577Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0031_metrics_sets_v2_writing_mv", "severity": "info", "timestamp": "2023-07-06T10:27:17.193172Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0032_redo_0030_and_0031_without_timestamps", "severity": "info", "timestamp": "2023-07-06T10:27:17.199175Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0032_redo_0030_and_0031_without_timestamps", "severity": "info", "timestamp": "2023-07-06T10:27:17.212090Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0033_metrics_cleanup_old_views", "severity": "info", "timestamp": "2023-07-06T10:27:17.218729Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0033_metrics_cleanup_old_views", "severity": "info", "timestamp": "2023-07-06T10:27:17.247397Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0034_metrics_cleanup_old_tables", "severity": "info", "timestamp": "2023-07-06T10:27:17.254860Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0034_metrics_cleanup_old_tables", "severity": "info", "timestamp": "2023-07-06T10:27:17.267433Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0035_metrics_raw_timeseries_id", "severity": "info", "timestamp": "2023-07-06T10:27:17.273278Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0035_metrics_raw_timeseries_id", "severity": "info", "timestamp": "2023-07-06T10:27:17.281414Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0001_sessions", "severity": "info", "timestamp": "2023-07-06T10:27:17.289557Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0001_sessions", "severity": "info", "timestamp": "2023-07-06T10:27:17.305923Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0002_sessions_aggregates", "severity": "info", "timestamp": "2023-07-06T10:27:17.313465Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0002_sessions_aggregates", "severity": "info", "timestamp": "2023-07-06T10:27:17.359230Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0003_sessions_matview", "severity": "info", "timestamp": "2023-07-06T10:27:17.367128Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0003_sessions_matview", "severity": "info", "timestamp": "2023-07-06T10:27:17.378874Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0004_sessions_ttl", "severity": "info", "timestamp": "2023-07-06T10:27:17.386100Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0004_sessions_ttl", "severity": "info", "timestamp": "2023-07-06T10:27:17.402702Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0001_profiles", "severity": "info", "timestamp": "2023-07-06T10:27:17.410548Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0001_profiles", "severity": "info", "timestamp": "2023-07-06T10:27:17.420920Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0002_disable_vertical_merge_algorithm", "severity": "info", "timestamp": "2023-07-06T10:27:17.427884Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0002_disable_vertical_merge_algorithm", "severity": "info", "timestamp": "2023-07-06T10:27:17.438205Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0003_add_device_architecture", "severity": "info", "timestamp": "2023-07-06T10:27:17.444269Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0003_add_device_architecture", "severity": "info", "timestamp": "2023-07-06T10:27:17.453192Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0004_drop_profile_column", "severity": "info", "timestamp": "2023-07-06T10:27:17.458907Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0004_drop_profile_column", "severity": "info", "timestamp": "2023-07-06T10:27:17.468157Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0001_functions", "severity": "info", "timestamp": "2023-07-06T10:27:17.474716Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0001_functions", "severity": "info", "timestamp": "2023-07-06T10:27:17.490431Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0002_add_new_columns_to_raw_functions", "severity": "info", "timestamp": "2023-07-06T10:27:17.497406Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0002_add_new_columns_to_raw_functions", "severity": "info", "timestamp": "2023-07-06T10:27:17.531239Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0001_replays", "severity": "info", "timestamp": "2023-07-06T10:27:17.537809Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0001_replays", "severity": "info", "timestamp": "2023-07-06T10:27:17.551742Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0002_add_url", "severity": "info", "timestamp": "2023-07-06T10:27:17.559099Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0002_add_url", "severity": "info", "timestamp": "2023-07-06T10:27:17.568275Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0003_alter_url_allow_null", "severity": "info", "timestamp": "2023-07-06T10:27:17.577253Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0003_alter_url_allow_null", "severity": "info", "timestamp": "2023-07-06T10:27:17.589200Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0004_add_error_ids_column", "severity": "info", "timestamp": "2023-07-06T10:27:17.595336Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0004_add_error_ids_column", "severity": "info", "timestamp": "2023-07-06T10:27:17.615408Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0005_add_urls_user_agent_replay_start_timestamp", "severity": "info", "timestamp": "2023-07-06T10:27:17.622279Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0005_add_urls_user_agent_replay_start_timestamp", "severity": "info", "timestamp": "2023-07-06T10:27:17.682215Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0006_add_is_archived_column", "severity": "info", "timestamp": "2023-07-06T10:27:17.689431Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0006_add_is_archived_column", "severity": "info", "timestamp": "2023-07-06T10:27:17.699524Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0007_add_replay_type_column", "severity": "info", "timestamp": "2023-07-06T10:27:17.706368Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0007_add_replay_type_column", "severity": "info", "timestamp": "2023-07-06T10:27:17.717618Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0008_add_sample_rate", "severity": "info", "timestamp": "2023-07-06T10:27:17.723876Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0008_add_sample_rate", "severity": "info", "timestamp": "2023-07-06T10:27:17.739475Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0009_add_dom_index_columns", "severity": "info", "timestamp": "2023-07-06T10:27:17.746855Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0009_add_dom_index_columns", "severity": "info", "timestamp": "2023-07-06T10:27:17.810761Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0010_add_nullable_columns", "severity": "info", "timestamp": "2023-07-06T10:27:17.816936Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0010_add_nullable_columns", "severity": "info", "timestamp": "2023-07-06T10:27:17.845199Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0001_sets_aggregate_table", "severity": "info", "timestamp": "2023-07-06T10:27:17.851920Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0001_sets_aggregate_table", "severity": "info", "timestamp": "2023-07-06T10:27:17.882137Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0002_sets_raw_table", "severity": "info", "timestamp": "2023-07-06T10:27:17.888442Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0002_sets_raw_table", "severity": "info", "timestamp": "2023-07-06T10:27:17.897035Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0003_sets_mv", "severity": "info", "timestamp": "2023-07-06T10:27:17.902884Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0003_sets_mv", "severity": "info", "timestamp": "2023-07-06T10:27:17.910477Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0004_sets_raw_add_granularities", "severity": "info", "timestamp": "2023-07-06T10:27:17.915579Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0004_sets_raw_add_granularities", "severity": "info", "timestamp": "2023-07-06T10:27:17.923634Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0005_sets_replace_mv", "severity": "info", "timestamp": "2023-07-06T10:27:17.929578Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0005_sets_replace_mv", "severity": "info", "timestamp": "2023-07-06T10:27:17.938260Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0006_sets_raw_add_granularities_dist_table", "severity": "info", "timestamp": "2023-07-06T10:27:17.943648Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0006_sets_raw_add_granularities_dist_table", "severity": "info", "timestamp": "2023-07-06T10:27:17.948583Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0007_distributions_aggregate_table", "severity": "info", "timestamp": "2023-07-06T10:27:17.954586Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0007_distributions_aggregate_table", "severity": "info", "timestamp": "2023-07-06T10:27:17.988931Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0008_distributions_raw_table", "severity": "info", "timestamp": "2023-07-06T10:27:17.997846Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0008_distributions_raw_table", "severity": "info", "timestamp": "2023-07-06T10:27:18.007480Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0009_distributions_mv", "severity": "info", "timestamp": "2023-07-06T10:27:18.014462Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0009_distributions_mv", "severity": "info", "timestamp": "2023-07-06T10:27:18.023724Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0010_counters_aggregate_table", "severity": "info", "timestamp": "2023-07-06T10:27:18.030691Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0010_counters_aggregate_table", "severity": "info", "timestamp": "2023-07-06T10:27:18.064687Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0011_counters_raw_table", "severity": "info", "timestamp": "2023-07-06T10:27:18.073920Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0011_counters_raw_table", "severity": "info", "timestamp": "2023-07-06T10:27:18.085019Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0012_counters_mv", "severity": "info", "timestamp": "2023-07-06T10:27:18.092186Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0012_counters_mv", "severity": "info", "timestamp": "2023-07-06T10:27:18.103925Z"}
+{"module": "snuba.migrations.runner", "event": "Running migration: 0013_distributions_dist_tags_hash", "severity": "info", "timestamp": "2023-07-06T10:27:18.110478Z"}
+{"module": "snuba.migrations.runner", "event": "Finished: 0013_distributions_dist_tags_hash", "severity": "info", "timestamp": "2023-07-06T10:27:18.115303Z"}
+Finished running migrations
+
+▶ Creating additional Kafka topics ...
+ Container sentry-self-hosted-zookeeper-1  Running
+Created topic ingest-attachments.
+
+ Container sentry-self-hosted-zookeeper-1  Running
+Created topic ingest-transactions.
+
+ Container sentry-self-hosted-zookeeper-1  Running
+Created topic ingest-events.
+
+ Container sentry-self-hosted-zookeeper-1  Running
+Created topic ingest-replay-recordings.
+
+
+▶ Ensuring proper PostgreSQL version ...
+
+▶ Setting up / migrating database ...
+ Container sentry-self-hosted-postgres-1  Creating
+ Container sentry-self-hosted-memcached-1  Creating
+ Container sentry-self-hosted-symbolicator-1  Creating
+ Container sentry-self-hosted-smtp-1  Creating
+ Container sentry-self-hosted-redis-1  Running
+ Container sentry-self-hosted-clickhouse-1  Running
+ Container sentry-self-hosted-zookeeper-1  Running
+ Container sentry-self-hosted-kafka-1  Running
+ Container sentry-self-hosted-snuba-consumer-1  Creating
+ Container sentry-self-hosted-snuba-sessions-consumer-1  Creating
+ Container sentry-self-hosted-snuba-transactions-consumer-1  Creating
+ Container sentry-self-hosted-snuba-outcomes-consumer-1  Creating
+ Container sentry-self-hosted-snuba-subscription-consumer-transactions-1  Creating
+ Container sentry-self-hosted-snuba-subscription-consumer-events-1  Creating
+ Container sentry-self-hosted-vroom-1  Creating
+ Container sentry-self-hosted-snuba-api-1  Creating
+ Container sentry-self-hosted-snuba-replacer-1  Creating
+ Container sentry-self-hosted-symbolicator-1  Created
+ Container sentry-self-hosted-snuba-api-1  Created
+ Container sentry-self-hosted-snuba-consumer-1  Created
+ Container sentry-self-hosted-snuba-transactions-consumer-1  Created
+ Container sentry-self-hosted-postgres-1  Created
+ Container sentry-self-hosted-snuba-subscription-consumer-events-1  Created
+ Container sentry-self-hosted-smtp-1  Created
+ Container sentry-self-hosted-memcached-1  Created
+ Container sentry-self-hosted-snuba-sessions-consumer-1  Created
+ Container sentry-self-hosted-snuba-subscription-consumer-transactions-1  Created
+ Container sentry-self-hosted-vroom-1  Created
+ Container sentry-self-hosted-snuba-replacer-1  Created
+ Container sentry-self-hosted-snuba-outcomes-consumer-1  Created
+ Container sentry-self-hosted-smtp-1  Starting
+ Container sentry-self-hosted-postgres-1  Starting
+ Container sentry-self-hosted-zookeeper-1  Waiting
+ Container sentry-self-hosted-memcached-1  Starting
+ Container sentry-self-hosted-symbolicator-1  Starting
+ Container sentry-self-hosted-zookeeper-1  Healthy
+ Container sentry-self-hosted-clickhouse-1  Waiting
+ Container sentry-self-hosted-kafka-1  Waiting
+ Container sentry-self-hosted-redis-1  Waiting
+ Container sentry-self-hosted-clickhouse-1  Waiting
+ Container sentry-self-hosted-kafka-1  Waiting
+ Container sentry-self-hosted-redis-1  Waiting
+ Container sentry-self-hosted-clickhouse-1  Waiting
+ Container sentry-self-hosted-kafka-1  Waiting
+ Container sentry-self-hosted-redis-1  Waiting
+ Container sentry-self-hosted-clickhouse-1  Waiting
+ Container sentry-self-hosted-kafka-1  Waiting
+ Container sentry-self-hosted-redis-1  Waiting
+ Container sentry-self-hosted-redis-1  Waiting
+ Container sentry-self-hosted-clickhouse-1  Waiting
+ Container sentry-self-hosted-kafka-1  Waiting
+ Container sentry-self-hosted-kafka-1  Waiting
+ Container sentry-self-hosted-kafka-1  Waiting
+ Container sentry-self-hosted-redis-1  Waiting
+ Container sentry-self-hosted-clickhouse-1  Waiting
+ Container sentry-self-hosted-clickhouse-1  Waiting
+ Container sentry-self-hosted-kafka-1  Waiting
+ Container sentry-self-hosted-redis-1  Waiting
+ Container sentry-self-hosted-clickhouse-1  Waiting
+ Container sentry-self-hosted-kafka-1  Waiting
+ Container sentry-self-hosted-redis-1  Waiting
+ Container sentry-self-hosted-memcached-1  Started
+ Container sentry-self-hosted-symbolicator-1  Started
+ Container sentry-self-hosted-postgres-1  Started
+ Container sentry-self-hosted-smtp-1  Started
+ Container sentry-self-hosted-redis-1  Healthy
+ Container sentry-self-hosted-clickhouse-1  Healthy
+ Container sentry-self-hosted-clickhouse-1  Healthy
+ Container sentry-self-hosted-redis-1  Healthy
+ Container sentry-self-hosted-clickhouse-1  Healthy
+ Container sentry-self-hosted-clickhouse-1  Healthy
+ Container sentry-self-hosted-redis-1  Healthy
+ Container sentry-self-hosted-redis-1  Healthy
+ Container sentry-self-hosted-redis-1  Healthy
+ Container sentry-self-hosted-redis-1  Healthy
+ Container sentry-self-hosted-clickhouse-1  Healthy
+ Container sentry-self-hosted-clickhouse-1  Healthy
+ Container sentry-self-hosted-redis-1  Healthy
+ Container sentry-self-hosted-redis-1  Healthy
+ Container sentry-self-hosted-clickhouse-1  Healthy
+ Container sentry-self-hosted-clickhouse-1  Healthy
+ Container sentry-self-hosted-kafka-1  Healthy
+ Container sentry-self-hosted-snuba-outcomes-consumer-1  Starting
+ Container sentry-self-hosted-kafka-1  Healthy
+ Container sentry-self-hosted-vroom-1  Starting
+ Container sentry-self-hosted-kafka-1  Healthy
+ Container sentry-self-hosted-snuba-replacer-1  Starting
+ Container sentry-self-hosted-kafka-1  Healthy
+ Container sentry-self-hosted-snuba-api-1  Starting
+ Container sentry-self-hosted-kafka-1  Healthy
+ Container sentry-self-hosted-snuba-sessions-consumer-1  Starting
+ Container sentry-self-hosted-kafka-1  Healthy
+ Container sentry-self-hosted-snuba-consumer-1  Starting
+ Container sentry-self-hosted-kafka-1  Healthy
+ Container sentry-self-hosted-snuba-subscription-consumer-events-1  Starting
+ Container sentry-self-hosted-kafka-1  Healthy
+ Container sentry-self-hosted-snuba-subscription-consumer-transactions-1  Starting
+ Container sentry-self-hosted-kafka-1  Healthy
+ Container sentry-self-hosted-snuba-transactions-consumer-1  Starting
+ Container sentry-self-hosted-snuba-replacer-1  Started
+ Container sentry-self-hosted-snuba-subscription-consumer-transactions-1  Started
+ Container sentry-self-hosted-vroom-1  Started
+ Container sentry-self-hosted-snuba-sessions-consumer-1  Started
+ Container sentry-self-hosted-snuba-subscription-consumer-events-1  Started
+ Container sentry-self-hosted-snuba-transactions-consumer-1  Started
+ Container sentry-self-hosted-snuba-outcomes-consumer-1  Started
+ Container sentry-self-hosted-snuba-consumer-1  Started
+ Container sentry-self-hosted-snuba-api-1  Started
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+10:28:07 [WARNING] sentry.utils.geo: Error opening GeoIP database: /geoip/GeoLite2-City.mmdb
+10:28:07 [WARNING] sentry.utils.geo: Error opening GeoIP database in Rust: /geoip/GeoLite2-City.mmdb
+Running migrations for default
+/usr/local/lib/python3.8/site-packages/memcache.py:1303: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if key is '':
+/usr/local/lib/python3.8/site-packages/memcache.py:1304: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if key_extra_len is 0:
+                                                                               Releases: 100% |#                                              | ETA:  --:--:--                                                                               Releases: 100% |#                                              | ETA:  --:--:--
+                                                                               Organization Options: 100% |#                                  | ETA:  --:--:--                                                                               Organization Options: 100% |#                                  | ETA:  --:--:--
+                                                                               Releases: 100% |#                                              | ETA:  --:--:--                                                                               Releases: 100% |#                                              | ETA:  --:--:--
+                                                                               Discover Saved Querys: 100% |#                                 | ETA:  --:--:--                                                                               Discover Saved Querys: 100% |#                                 | ETA:  --:--:--
+                                                                               Dashboards: 100% |#                                            | ETA:  --:--:--                                                                               Dashboards: 100% |#                                            | ETA:  --:--:--
+                                                                               Releases: 100% |#                                              | ETA:  --:--:--                                                                               Releases: 100% |#                                              | ETA:  --:--:--
+                                                                               Query Subscriptions: 100% |#                                   | ETA:  --:--:--                                                                               Query Subscriptions: 100% |#                                   | ETA:  --:--:--
+                                                                               Query Subscriptions: 100% |#                                   | ETA:  --:--:--                                                                               Query Subscriptions: 100% |#                                   | ETA:  --:--:--
+                                                                               Project Options: 100% |#                                       | ETA:  --:--:--                                                                               Project Options: 100% |#                                       | ETA:  --:--:--
+                                                                               Repositorys: 100% |#                                           | ETA:  --:--:--                                                                               Repositorys: 100% |#                                           | ETA:  --:--:--
+                                                                               Project Options: 100% |#                                       | ETA:  --:--:--                                                                               Project Options: 100% |#                                       | ETA:  --:--:--
+                                                                               Sentry Apps: 100% |#                                           | ETA:  --:--:--                                                                               Sentry Apps: 100% |#                                           | ETA:  --:--:--
+                                                                               Repository Project Path Configs: 100% |#                       | ETA:  --:--:--                                                                               Repository Project Path Configs: 100% |#                       | ETA:  --:--:--
+                                                                               Repository Project Path Configs: 100% |#                       | ETA:  --:--:--                                                                               Repository Project Path Configs: 100% |#                       | ETA:  --:--:--
+                                                                               Repository Project Path Configs: 100% |#                       | ETA:  --:--:--                                                                               Repository Project Path Configs: 100% |#                       | ETA:  --:--:--
+                                                                               Integration Features: 100% |#                                  | ETA:  --:--:--                                                                               Integration Features: 100% |#                                  | ETA:  --:--:--
+                                                                               Dashboard Widget Querys: 100% |#                               | ETA:  --:--:--                                                                               Dashboard Widget Querys: 100% |#                               | ETA:  --:--:--
+                                                                               Dashboard Widget Querys: 100% |#                               | ETA:  --:--:--                                                                               Dashboard Widget Querys: 100% |#                               | ETA:  --:--:--
+                                                                               Project Ownerships: 100% |#                                    | ETA:  --:--:--                                                                               Project Ownerships: 100% |#                                    | ETA:  --:--:--
+                                                                               Alert Rules: 100% |#                                           | ETA:  --:--:--                                                                               Alert Rules: 100% |#                                           | ETA:  --:--:--
+                                                                               Snuba Querys: 100% |#                                          | ETA:  --:--:--                                                                               Snuba Querys: 100% |#                                          | ETA:  --:--:--
+                                                                               Dashboard Widget Querys: 100% |#                               | ETA:  --:--:--                                                                               Dashboard Widget Querys: 100% |#                               | ETA:  --:--:--
+                                                                               Projects: 100% |#                                              | ETA:  --:--:--                                                                               Projects: 100% |#                                              | ETA:  --:--:--
+                                                                               Query Subscriptions: 100% |#                                   | ETA:  --:--:--                                                                               Query Subscriptions: 100% |#                                   | ETA:  --:--:--
+                                                                               Query Subscriptions: 100% |#                                   | ETA:  --:--:--                                                                               Query Subscriptions: 100% |#                                   | ETA:  --:--:--
+                                                                               Alert Rules: 100% |#                                           | ETA:  --:--:--                                                                               Alert Rules: 100% |#                                           | ETA:  --:--:--
+                                                                               Alert Rules: 100% |#                                           | ETA:  --:--:--                                                                               Alert Rules: 100% |#                                           | ETA:  --:--:--
+                                                                               Snuba Querys: 100% |#                                          | ETA:  --:--:--                                                                               Snuba Querys: 100% |#                                          | ETA:  --:--:--
+                                                                               Integrations: 100% |#                                          | ETA:  --:--:--                                                                               Integrations: 100% |#                                          | ETA:  --:--:--
+                                                                               Identity Providers: 100% |#                                    | ETA:  --:--:--                                                                               Identity Providers: 100% |#                                    | ETA:  --:--:--
+                                                                               External Actors: 100% |#                                       | ETA:  --:--:--                                                                               External Actors: 100% |#                                       | ETA:  --:--:--
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, nodestore, replays, sentry, sessions, sites, social_auth
+Running migrations:
+  Applying sentry.0001_squashed_0200_release_indices... OK
+  Applying contenttypes.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying nodestore.0001_initial... OK
+  Applying nodestore.0002_nodestore_no_dictfield... OK
+  Applying replays.0001_init_replays... OK
+  Applying replays.0002_rename_to_segment_id... OK
+  Applying replays.0003_add_size_to_recording_segment... OK
+  Applying sentry.0201_semver_package... OK
+  Applying sentry.0202_org_slug_upper_idx... OK
+  Applying sentry.0203_groupedmessage_status_index... OK
+  Applying sentry.0204_use_project_team_for_team_key_transactions... OK
+  Applying sentry.0205_semver_backfill... OK
+  Applying sentry.0206_organization_require_email_verification_flag... OK
+  Applying sentry.0207_release_adoption... OK
+  Applying sentry.0208_add_team_scope... OK
+  Applying sentry.0209_avatar_remove_file_fk... OK
+  Applying sentry.0210_backfill_project_transaction_thresholds... OK
+  Applying sentry.0211_add_artifact_count... OK
+  Applying sentry.0212_appconnectbuilds... OK
+  Applying sentry.0213_rule_project_status_owner_index... OK
+  Applying sentry.0214_activity_project_type_datetime_idx... OK
+  Applying sentry.0215_fix_state... OK
+  Applying sentry.0216_cdc_setup_replication_index... OK
+  Applying sentry.0217_debugfile_remove_project_fk... OK
+  Applying sentry.0218_releasefile_remove_fks... OK
+  Applying sentry.0219_exporteddatablob_remove_blob_fk... OK
+  Applying sentry.0220_add_current_release_version_group_resolution... OK
+  Applying sentry.0221_add_appconnect_upload_dates... OK
+  Applying sentry.0222_add_datetime_index_to_auditlogentry... OK
+  Applying sentry.0223_semver_backfill_2... OK
+  Applying sentry.0224_has_sessions_flag... OK
+  Applying sentry.0225_latest_appconnect_builds_check... OK
+  Applying sentry.0226_add_visits... OK
+  Applying sentry.0227_backfill_visits... OK
+  Applying sentry.0228_update_auditlog_index_with_entry... OK
+  Applying sentry.0229_drop_jiratenant... OK
+  Applying sentry.0230_sentry_app_config_jsonfield... OK
+  Applying sentry.0231_alert_rule_comparison_delta... OK
+  Applying sentry.0232_backfill_missed_semver_releases... OK
+  Applying sentry.0233_recreate_subscriptions_in_snuba... OK
+  Applying sentry.0234_grouphistory... OK
+  Applying sentry.0235_add_metricskeyindexer_table... OK
+  Applying sentry.0236_remove_legacy_key_transactions... OK
+  Applying sentry.0237_recreate_subscriptions_in_snuba... OK
+  Applying sentry.0238_remove_scheduleddeletion_aborted... OK
+  Applying sentry.0239_drop_scheduleddeletion_aborted... OK
+  Applying sentry.0240_grouphistory_index... OK
+  Applying sentry.0241_grouphistory_null_actor... OK
+  Applying sentry.0242_delete_removed_plugin_data... OK
+  Applying sentry.0243_delete_visualstudio_repo_data... OK
+  Applying sentry.0244_organization_and_integration_foreign_keys... OK
+  Applying sentry.0245_delete_itunes_credentials... OK
+  Applying sentry.0246_incident_snapshots_remove_fks... OK
+  Applying sentry.0247_add_color_column... OK
+  Applying sentry.0248_add_popularity_column... OK
+  Applying sentry.0249_add_avatar_type_back... OK
+  Applying sentry.0250_backfill_popularity... OK
+  Applying sentry.0251_sentryappavatar_sentryapp_not_unique... OK
+  Applying sentry.0252_code_mapping_cascade_delete... OK
+  Applying sentry.0253_add_widget_type... OK
+  Applying sentry.0254_org_integration_grace_period_end... OK
+  Applying sentry.0255_delete_code_mappings_with_no_integration... OK
+  Applying sentry.0256_create_docintegration_table... OK
+  Applying sentry.0257_add_target_id_and_type_to_integrationfeature... OK
+  Applying sentry.0258_create_docintegrationavatar_table... OK
+  Applying sentry.0259_delete_codeowners_and_code_mappings_with_no_integration... OK
+  Applying sentry.0260_backfill_integrationfeature... OK
+  Applying sentry.0261_prepare_remove_sentry_app_column... OK
+  Applying sentry.0262_drop_sentry_app_from_integrationfeature... OK
+  Applying sentry.0263_remove_not_null_integrationfeature... OK
+  Applying sentry.0264_use_booleanfield_docintegration... OK
+  Applying sentry.0265_add_userrole... OK
+  Applying sentry.0266_add_dashboard_widget_detail_field... OK
+  Applying sentry.0267_sentry_release_version_btree... OK
+  Applying sentry.0268_rename_issue_widget_query_fields... OK
+  Applying sentry.0269_alertrule_remove_unique_name... OK
+  Applying sentry.0270_group_history_project_date_added_index... OK
+  Applying sentry.0271_add_codeowners_auto_sync_setting... OK
+  Applying sentry.0272_seq_scan_indexes... OK
+  Applying sentry.0273_fix_grouplink_seqscans... OK
+  Applying sentry.0274_add_dashboardwidgetquery_columns_aggregates... OK
+  Applying sentry.0275_rule_fire_history... OK
+  Applying sentry.0276_rulefirehistory_date_added_index... OK
+  Applying sentry.0277_backfill_dashboard_widget_query_columns_aggregates... OK
+  Applying sentry.0278_backfill_codeowners_auto_sync_setting... OK
+  Applying sentry.0279_add_limit_dashboard_widget... OK
+  Applying sentry.0280_extend_commit_author_email_length... OK
+  Applying sentry.0281_add_new_indexer_table... OK
+  Applying sentry.0282_add_field_aliases_dashboard_widget_query... OK
+  Applying sentry.0283_extend_externalissue_key... OK
+  Applying sentry.0284_metrics_indexer_alter_seq... OK
+  Applying sentry.0285_add_organization_member_team_role... OK
+  Applying sentry.0286_backfill_alertrule_organization... OK
+  Applying sentry.0287_backfill_snubaquery_environment... OK
+  Applying sentry.0288_fix_savedsearch_state... OK
+  Applying sentry.0289_dashboardwidgetquery_convert_orderby_to_field... OK
+  Applying sentry.0290_fix_project_has_releases... OK
+  Applying sentry.0291_add_new_perf_indexer... OK
+  Applying sentry.0292_migrate_sessions_subs_user_counts... OK
+  Applying sentry.0293_restore_metrics_based_alerts... OK
+  Applying sentry.0294_alertrule_type... OK
+  Applying sentry.0295_backfill_alertrule_type... OK
+  Applying sentry.0296_alertrule_type_not_null... OK
+  Applying sentry.0297_backfill_alert_owners... OK
+  Applying sentry.0298_add_dashboard_level_filter_fields... OK
+  Applying sentry.0299_update_commitfilechange_filename_type... OK
+  Applying sentry.0300_deploy_date_finished_index... OK
+  Applying sentry.0301_mep_move_type_to_snuba_query... OK
+  Applying sentry.0302_mep_backfill_and_not_null_snuba_query_type... OK
+  Applying sentry.0303_backfill_msteams_default_installation_type... OK
+  Applying sentry.0304_sentry_functions... OK
+  Applying sentry.0305_create_releaseactivity_table... OK
+  Applying sentry.0306_sentry_functions_code... OK
+  Applying sentry.0307_remove_alert_type_state... OK
+  Applying sentry.0308_remove_alert_type_column... OK
+  Applying sentry.0309_fix_many_to_many_field... OK
+  Applying sentry.0310_sentry_functions_add_webhooks... OK
+  Applying sentry.0311_backfill_slack_settings... OK
+  Applying sentry.0312_has_profiles_flag... OK
+  Applying sentry.0313_sentry_functions_env_variables... OK
+  Applying sentry.0314_bit_int_for_org_and_project_id... OK
+  Applying sentry.0315_add_type_to_group... OK
+  Applying sentry.0316_add_context_field_to_groupowner... OK
+  Applying sentry.0317_groupedmessage_type_index... OK
+  Applying sentry.0318_add_is_homepage_to_saved_query_model... OK
+  Applying sentry.0319_projectownership_fallthrough_false... OK
+                                                                               Project Code Ownerss: 100% |#                                  | ETA:  --:--:--                                                                               Project Code Ownerss: 100% |#                                  | ETA:  --:--:--
+                                                                               App Connect Builds: 100% |#                                    | ETA:  --:--:--                                                                               App Connect Builds: 100% |#                                    | ETA:  --:--:--
+                                                                               Saved Searchs: N/A% |                                          | ETA:  --:--:--                                                                               Saved Searchs: 100% |##########################################| Time:  0:00:00
+                                                                               Saved Searchs: N/A% |                                          | ETA:  --:--:--                                                                               Saved Searchs: 100% |##########################################| Time:  0:00:00
+                                                                               Organizations: 100% |#                                         | ETA:  --:--:--                                                                               Organizations: 100% |#                                         | ETA:  --:--:--
+                                                                               Monitors: 100% |#                                              | ETA:  --:--:--                                                                               Monitors: 100% |#                                              | ETA:  --:--:--
+                                                                               Monitors: 100% |#                                              | ETA:  --:--:--                                                                               Monitors: 100% |#                                              | ETA:  --:--:--
+                                                                               Organizations: 100% |#                                         | ETA:  --:--:--                                                                               Organizations: 100% |#                                         | ETA:  --:--:--
+                                                                               Service Hooks: 100% |#                                         | ETA:  --:--:--                                                                               Service Hooks: 100% |#                                         | ETA:  --:--:--
+                                                                               Monitor Check Ins: 100% |#                                     | ETA:  --:--:--                                                                               Monitor Check Ins: 100% |#                                     | ETA:  --:--:--
+                                                                               Artifact Bundles: 100% |#                                      | ETA:  --:--:--                                                                               Artifact Bundles: 100% |#                                      | ETA:  --:--:--
+                                                                               Users: 100% |#                                                 | ETA:  --:--:--                                                                               Users: 100% |#                                                 | ETA:  --:--:--
+                                                                               Teams: 100% |#                                                 | ETA:  --:--:--                                                                               Teams: 100% |#                                                 | ETA:  --:--:--
+                                                                               Users: 100% |#                                                 | ETA:  --:--:--                                                                               Users: 100% |#                                                 | ETA:  --:--:--
+                                                                               Monitors: 100% |#                                              | ETA:  --:--:--                                                                               Monitors: 100% |#                                              | ETA:  --:--:--
+                                                                               Query Subscriptions: 100% |#                                   | ETA:  --:--:--                                                                               Query Subscriptions: 100% |#                                   | ETA:  --:--:--
+                                                                               Pager Duty Services: 100% |#                                   | ETA:  --:--:--                                                                               Pager Duty Services: 100% |#                                   | ETA:  --:--:--
+                                                                               Repository Project Path Configs: 100% |#                       | ETA:  --:--:--                                                                               Repository Project Path Configs: 100% |#                       | ETA:  --:--:--
+                                                                               Users: 100% |#                                                 | ETA:  --:--:--                                                                               Users: 100% |#                                                 | ETA:  --:--:--
+                                                                               Teams: 100% |#                                                 | ETA:  --:--:--                                                                               Teams: 100% |#                                                 | ETA:  --:--:--
+                                                                               Notification Settings: 100% |#                                 | ETA:  --:--:--                                                                               Notification Settings: 100% |#                                 | ETA:  --:--:--
+                                                                               Organization Member Mappings: 100% |#                          | ETA:  --:--:--                                                                               Organization Member Mappings: 100% |#                          | ETA:  --:--:--
+                                                                               Notification Settings: 100% |#                                 | ETA:  --:--:--                                                                               Notification Settings: 100% |#                                 | ETA:  --:--:--
+                                                                               Perf String Indexers: 100% |#                                  | ETA:  --:--:--                                                                               Perf String Indexers: 100% |#                                  | ETA:  --:--:--
+                                                                               Authenticators: 100% |#                                        | ETA:  --:--:--                                                                               Authenticators: 100% |#                                        | ETA:  --:--:--
+                                                                               Options: 100% |#                                               | ETA:  --:--:--                                                                               Options: 100% |#                                               | ETA:  --:--:--
+                                                                               Control Options: 100% |#                                       | ETA:  --:--:--                                                                               Control Options: 100% |#                                       | ETA:  --:--:--
+                                                                               Organization Options: 100% |#                                  | ETA:  --:--:--                                                                               Organization Options: 100% |#                                  | ETA:  --:--:--
+                                                                               Project Options: 100% |#                                       | ETA:  --:--:--                                                                               Project Options: 100% |#                                       | ETA:  --:--:--
+  Applying sentry.0320_rule_history_event_id... OK
+  Applying sentry.0321_suspect_committer_auto_assignment... OK
+  Applying sentry.0322_projectownership_fallthrough_revert... OK
+  Applying sentry.0323_backfill_ownership_for_projects_with_codeowners... OK
+  Applying sentry.0324_set_auto_assignments_true_by_default... OK
+  Applying sentry.0325_turn_off_suspect_committer_auto_assignment_as_default... OK
+  Applying sentry.0326_add_first_transaction_to_release_project... OK
+  Applying sentry.0327_add_appid_str... OK
+  Applying sentry.0328_backfill_app_id_str... OK
+  Applying sentry.0329_make_app_id_nullable... OK
+  Applying sentry.0330_add_project_replay_sent_flag... OK
+  Applying sentry.0331_redirect_app_id... OK
+  Applying sentry.0332_release_user_agent... OK
+  Applying sentry.0333_remove_app_id... OK
+  Applying sentry.0334_repositorypath_automatically_generated... OK
+  Applying sentry.0335_cleanup_old_savedsearches... OK
+  Applying sentry.0336_mark_deprecated_savedsearch_is_default_nullable... OK
+  Applying sentry.0337_drop_deprecated_savedsearch_columns... OK
+  Applying sentry.0338_add_saved_search_visibility... OK
+  Applying sentry.0339_mark_old_pinned_savedsearches... OK
+  Applying sentry.0340_drop_deprecated_savedsearch_columns_db_op... OK
+  Applying sentry.0341_reconstrain_savedsearch_pinning_fields... OK
+  Applying sentry.0342_add_spike_protection_flags_to_project... OK
+  Applying sentry.0343_drop_savedsearch_userdefault_fk_constraints_and_remove_state... OK
+  Applying sentry.0344_add_idp_flags... OK
+  Applying sentry.0345_create_organizationmapping... OK
+  Applying sentry.0346_add_flags_field_to_team_model... OK
+  Applying sentry.0347_add_project_has_minified_stack_trace_flag... OK
+  Applying sentry.0348_add_outbox_and_tombstone_tables... OK
+  Applying sentry.0349_issue_alert_fallback... OK
+  Applying sentry.0350_add_codecov_access_flag... OK
+  Applying sentry.0351_project_has_checkins_monitors... OK
+  Applying sentry.0352_add_org_role_to_team_model... OK
+  Applying sentry.0353_add_missing_uuid_unique_indexes... OK
+  Applying sentry.0354_break_saved_search_foreign_key... OK
+  Applying sentry.0355_break_groupowner_user_foreign_key... OK
+  Applying sentry.0356_break_release_owner_foreign_key... OK
+  Applying sentry.0357_add_region_scheduled_deletions... OK
+  Applying sentry.0358_break_group_related_user_fks... OK
+  Applying sentry.0359_checkin_file_field... OK
+  Applying sentry.0360_authenticator_config_type_change... OK
+  Applying sentry.0361_monitor_environment... OK
+  Applying sentry.0362_break_project_integration_fk... OK
+  Applying sentry.0363_debug_id_artifact_bundle... OK
+  Applying sentry.0364_remove_project_id_from_environment... OK
+  Applying sentry.0365_breaking_more_fks... OK
+  Applying sentry.0366_add_slug_to_monitors... OK
+  Applying sentry.0367_migrate_monitor_guid_to_slug... OK
+  Applying sentry.0368_monitor_remove_slug_nullable... OK
+  Applying sentry.0369_break_useroption_org_fk... OK
+  Applying sentry.0370_integrate_monitor_environment... OK
+  Applying sentry.0371_monitor_make_org_slug_unique... OK
+  Applying sentry.0372_add_uniquetogether_monitorenvironment... OK
+  Applying sentry.0373_dist_id_to_name... OK
+  Applying sentry.0374_breaking_even_more_keys... OK
+  Applying sentry.0375_remove_nullable_from_field... OK
+  Applying sentry.0376_longer_option_names... OK
+  Applying sentry.0377_groupedmesssage_type_individual_index... OK
+  Applying sentry.0378_remove_dynamic_sampling_depricated_data... OK
+  Applying sentry.0379_create_notificationaction_model... OK
+  Applying sentry.0380_backfill_monitor_env_initial... OK
+  Applying sentry.0381_fix_org_slug_casing... OK
+  Applying sentry.0382_add_installation_id_to_service_hook... OK
+  Applying sentry.0383_mv_user_avatar... OK
+  Applying sentry.0384_backfill_installation_ids... OK
+  Applying sentry.0385_service_hook_hc_fk... OK
+  Applying sentry.0386_backfill_monitor_env_checkins... OK
+  Applying sentry.0387_add_until_escalating_column_to_groupsnooze... OK
+  Applying sentry.0388_remove_unique_constraint_artifact_bundle... OK
+  Applying sentry.0389_nullify_debug_id_artifact_bundle_field... OK
+  Applying sentry.0390_remove_field_in_bundle_model... OK
+  Applying sentry.0391_remove_field_in_bundle_model_from_db... OK
+  Applying sentry.0392_add_date_uploaded_field_to_bundle... OK
+  Applying sentry.0393_create_groupforecast_table... OK
+  Applying sentry.0394_set_none_date_uploaded_to_date_added... OK
+  Applying sentry.0395_add_index_to_date_added... OK
+  Applying sentry.0396_add_usecase_to_indexer... OK
+  Applying sentry.0397_break_some_more_fks... OK
+  Applying sentry.0398_actor_fk_inversion... OK
+  Applying sentry.0399_enable_indexes_for_actor_fks... OK
+  Applying sentry.0400_add_unique_constraint_indexer... OK
+  Applying sentry.0401_create_rulesnooze_table... OK
+  Applying sentry.0402_add_organizationmembermapping_table... OK
+  Applying sentry.0403_backfill_actors... OK
+  Applying sentry.0404_backfill_user_avatars... OK
+  Applying sentry.0405_rulesnooze_user_null... OK
+  Applying sentry.0406_monitor_cleanup... OK
+  Applying sentry.0407_recreate_perf_alert_subscriptions... OK
+  Applying sentry.0408_group_add_sub_status... OK
+  Applying sentry.0409_group_substatus_add_index... OK
+  Applying sentry.0410_alter_until_escalating_column_from_groupsnooze... OK
+  Applying sentry.0411_remove_until_escalating_column_from_groupsnooze... OK
+  Applying sentry.0412_org_integration_denormalization... OK
+  Applying sentry.0413_backfill_organization_integration_denormalization... OK
+  Applying sentry.0414_add_org_index_to_repo_and_pagerduty... OK
+  Applying sentry.0415_backfill_actor_team_and_user... OK
+  Applying sentry.0416_drop_until_escalating_in_groupsnooze... OK
+  Applying sentry.0417_backfill_groupedmessage_substatus... OK
+  Applying sentry.0418_add_actor_constraints... OK
+  Applying sentry.0419_add_null_constraint_for_org_integration_denorm... OK
+  Applying sentry.0420_backfill_groupedmessage_ignored_substatus... OK
+  Applying sentry.0421_rule_set_null_owner_deleted... OK
+  Applying sentry.0422_remove_group_forecast_fk_constraint... OK
+  Applying sentry.0423_remove_group_forecast_model... OK
+  Applying sentry.0424_drop_group_forecast_table... OK
+  Applying sentry.0425_add_user_team_to_notifications... OK
+  Applying sentry.0426_add_notification_user_team_index... OK
+  Applying sentry.0427_add_org_member_id_to_organizationmembermapping_table... OK
+  Applying sentry.0428_backfill_denormalize_notification_actor... OK
+  Applying sentry.0429_fix_broken_external_issues... OK
+  Applying sentry.0430_break_fks_on_alertruletriggeraction... OK
+  Applying sentry.0431_breaking_orgintegration_pieces_and_default_auth_team_fks... OK
+  Applying sentry.0432_backfill_org_member_id_organizationmembermapping... OK
+  Applying sentry.0433_set_monitor_status_to_object_status_only... OK
+  Applying sentry.0434_notification_setting_target_id... OK
+  Applying sentry.0435_add_alert_rule_source... OK
+  Applying sentry.0436_break_fks_on_external_actor_and_issue... OK
+  Applying sentry.0437_remove_fk_notifications_target... OK
+  Applying sentry.0438_break_inviter_fk_organizationmember... OK
+  Applying sentry.0439_backfill_notificationsetting... OK
+  Applying sentry.0440_add_control_option... OK
+  Applying sentry.0441_remove_unattached_notification_settings... OK
+  Applying sentry.0442_remove_use_case_id_default_perf_indexer... OK
+  Applying sentry.0443_check_notification_team_or_user... OK
+  Applying sentry.0444_remove_next_checkin_last_checkin_from_monitor... OK
+  Applying sentry.0445_drop_deprecated_monitor_next_last_checkin_db_op... OK
+  Applying sentry.0446_backfill_indexer_use_case_id... OK
+  Applying sentry.0447_backfill_groupedmessage_resolved_substatus... OK
+  Applying sentry.0448_add_expected_time_config_to_cron_checkin... OK
+  Applying sentry.0449_pickle_to_json_authenticator... OK
+  Applying sentry.0450_pickle_to_json_sentry_option... OK
+  Applying sentry.0451_pickle_to_json_sentry_controloption... OK
+  Applying sentry.0452_break_user_actor_fk... OK
+  Applying sentry.0453_pickle_to_json_sentry_organizationoptions... OK
+  Applying sentry.0454_pickle_to_json_sentry_projectoptions... OK
+                                                                               User Options: 100% |#                                          | ETA:  --:--:--                                                                               User Options: 100% |#                                          | ETA:  --:--:--
+                                                                               Audit Log Entrys: 100% |#                                      | ETA:  --:--:--                                                                               Audit Log Entrys: 100% |#                                      | ETA:  --:--:--
+                                                                               Grouped Messages: 100% |#                                      | ETA:  --:--:--                                                                               Grouped Messages: 100% |#                                      | ETA:  --:--:--
+                                                                               Group Tombstones: 100% |#                                      | ETA:  --:--:--                                                                               Group Tombstones: 100% |#                                      | ETA:  --:--:--
+                                                                               Processing Issues: 100% |#                                     | ETA:  --:--:--                                                                               Processing Issues: 100% |#                                     | ETA:  --:--:--
+                                                                               Rules: 100% |#                                                 | ETA:  --:--:--                                                                               Rules: 100% |#                                                 | ETA:  --:--:--
+                                                                               Activitys: 100% |#                                             | ETA:  --:--:--                                                                               Activitys: 100% |#                                             | ETA:  --:--:--
+                                                                               Raw Events: 100% |#                                            | ETA:  --:--:--                                                                               Raw Events: 100% |#                                            | ETA:  --:--:--
+                                                                               Organization Members: 100% |#                                  | ETA:  --:--:--                                                                               Organization Members: 100% |#                                  | ETA:  --:--:--
+                                                                               Organization Mappings: 100% |#                                 | ETA:  --:--:--                                                                               Organization Mappings: 100% |#                                 | ETA:  --:--:--
+                                                                               Organization Members: 100% |#                                  | ETA:  --:--:--                                                                               Organization Members: 100% |#                                  | ETA:  --:--:--
+                                                                               Organizations: 100% |#                                         | ETA:  --:--:--                                                                               Organizations: 100% |#                                         | ETA:  --:--:--
+                                                                               Organization Members: 100% |#                                  | ETA:  --:--:--                                                                               Organization Members: 100% |#                                  | ETA:  --:--:--
+  Applying sentry.0455_pickle_to_json_sentry_useroption... OK
+  Applying sentry.0456_add_organization_status_to_org_mapping... OK
+  Applying sentry.0457_sentry_monitorcheckin_date_added_index... OK
+  Applying sentry.0458_add_options_source_column... OK
+  Applying sentry.0459_remove_user_actorid... OK
+  Applying sentry.0460_pickle_to_json_sentry_auditlogentry... OK
+  Applying sentry.0461_pickle_to_json_sentry_groupedmessage... OK
+  Applying sentry.0462_pickle_to_json_sentry_grouptombstone... OK
+  Applying sentry.0463_pickle_to_json_sentry_processingissue... OK
+  Applying sentry.0464_pickle_to_json_sentry_rule... OK
+  Applying sentry.0465_pickle_to_json_sentry_activity... OK
+  Applying sentry.0466_gh_comment_index... OK
+  Applying sentry.0467_control_files... OK
+  Applying sentry.0468_pickle_to_json_sentry_rawevent... OK
+  Applying sentry.0469_backfill_orgmembermapping... OK
+  Applying sentry.0470_denormalize_user_is_active... OK
+  Applying sentry.0471_dashboard_widget_description... OK
+  Applying sentry.0472_delete_past_organization_mappings... OK
+  Applying sentry.0473_backfill_organization_member_is_active... OK
+  Applying sentry.0474_make_organization_mapping_org_id_unique... OK
+  Applying sentry.0475_backfill_groupedmessage_unresolved_none_status... OK
+  Applying sentry.0476_convert_unresolved_to_set_escalating_activitytype... OK
+  Applying sentry.0477_control_avatars... OK
+  Applying sentry.0478_backfill_organization_mappings_via_outbox... OK
+  Applying sentry.0479_add_timeout_at_checkin... OK
+  Applying sentry.0480_apiapplication_owner_optional... OK
+  Applying sentry.0481_add_pull_request_comment_table... OK
+  Applying sentry.0482_denormalize_user_email... OK
+  Applying sentry.0483_backfill_organization_member_user_email... OK
+  Applying sentry.0484_break_org_member_user_fk... OK
+  Applying sentry.0485_remove_scheduled_job... OK
+  Applying sentry.0486_integer_pr_comment_issue_list... OK
+  Applying sentry.0487_add_indexes_to_bundles... OK
+  Applying sentry.0488_add_orgauthtoken... OK
+  Applying sentry.0489_index_checkin_timeout... OK
+  Applying sentry.0490_add_is_test_to_org... OK
+  Applying sessions.0001_initial... OK
+  Applying sites.0001_initial... OK
+  Applying sites.0002_alter_domain_unique... OK
+  Applying social_auth.0001_initial... OK
+10:29:46 [WARNING] sentry: Cannot initiate onboarding for organization (1) due to missing owners
+Created internal Sentry project (slug=internal, id=1)
+
+Would you like to create a user account now? [Y/n]: Email: Password:/usr/local/lib/python3.8/getpass.py:91: GetPassWarning: Can not control echo on the terminal.
+  passwd = fallback_getpass(prompt, stream)
+Warning: Password input may be echoed.
+ Password:
+Warning: Password input may be echoed.
+ Repeat for confirmation:
+Warning: Password input may be echoed.
+ Added to organization: sentry
+User created: serkan.ceylan@veribox.com.tr
+Creating missing DSNs
+Correcting Group.num_comments counter
+
+
+▶ Setting up GeoIP integration ...
+Setting up IP address geolocation ...
+Installing (empty) IP address geolocation database ... done.
+IP address geolocation is not configured for updates.
+See https://develop.sentry.dev/self-hosted/geolocation/ for instructions.
+Error setting up IP address geolocation.
+
+
+-----------------------------------------------------------------
+
+You're all done! Run the following command to get Sentry running:
+
+  docker-compose up -d
+
+-----------------------------------------------------------------
+

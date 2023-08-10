@@ -1,0 +1,137 @@
+▶ Parsing command line ...
+
+▶ Detecting Docker platform
+Detected Docker platform is linux/amd64
+
+▶ Initializing Docker Compose ...
+
+▶ Setting up error handling ...
+Sending build context to Docker daemon  2.048kB
+Step 1/4 : FROM debian:bullseye-slim
+bullseye-slim: Pulling from library/debian
+9d21b12d5fab: Pulling fs layer
+9d21b12d5fab: Verifying Checksum
+9d21b12d5fab: Download complete
+9d21b12d5fab: Pull complete
+Digest: sha256:3460d74bec6b88496cd183d7731930be55234c094f581f7dbdd96f56c1fc34d8
+Status: Downloaded newer image for debian:bullseye-slim
+ ---> 02ad3ff027de
+Step 2/4 : LABEL MAINTAINER="oss@sentry.io"
+ ---> Running in 389910c56634
+Removing intermediate container 389910c56634
+ ---> a8b56bdd83f3
+Step 3/4 : RUN set -x   && apt-get update   && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends jq   && apt-get clean   && rm -rf /var/lib/apt/lists/*
+ ---> Running in a0f71c85e015
+[91m+ apt-get update
+[0mGet:1 http://deb.debian.org/debian bullseye InRelease [116 kB]
+Get:2 http://deb.debian.org/debian-security bullseye-security InRelease [48.4 kB]
+Get:3 http://deb.debian.org/debian bullseye-updates InRelease [44.1 kB]
+Get:4 http://deb.debian.org/debian bullseye/main amd64 Packages [8183 kB]
+Get:5 http://deb.debian.org/debian-security bullseye-security/main amd64 Packages [252 kB]
+Get:6 http://deb.debian.org/debian bullseye-updates/main amd64 Packages [14.8 kB]
+Fetched 8658 kB in 2s (4495 kB/s)
+Reading package lists...
+[91m+ DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends jq
+[0mReading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libjq1 libonig5
+The following NEW packages will be installed:
+  jq libjq1 libonig5
+0 upgraded, 3 newly installed, 0 to remove and 0 not upgraded.
+Need to get 384 kB of archives.
+After this operation, 1148 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian bullseye/main amd64 libonig5 amd64 6.9.6-1.1 [185 kB]
+Get:2 http://deb.debian.org/debian bullseye/main amd64 libjq1 amd64 1.6-2.1 [135 kB]
+Get:3 http://deb.debian.org/debian bullseye/main amd64 jq amd64 1.6-2.1 [64.9 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 384 kB in 1s (727 kB/s)
+Selecting previously unselected package libonig5:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6664 files and directories currently installed.)
+Preparing to unpack .../libonig5_6.9.6-1.1_amd64.deb ...
+Unpacking libonig5:amd64 (6.9.6-1.1) ...
+Selecting previously unselected package libjq1:amd64.
+Preparing to unpack .../libjq1_1.6-2.1_amd64.deb ...
+Unpacking libjq1:amd64 (1.6-2.1) ...
+Selecting previously unselected package jq.
+Preparing to unpack .../archives/jq_1.6-2.1_amd64.deb ...
+Unpacking jq (1.6-2.1) ...
+Setting up libonig5:amd64 (6.9.6-1.1) ...
+Setting up libjq1:amd64 (1.6-2.1) ...
+Setting up jq (1.6-2.1) ...
+Processing triggers for libc-bin (2.31-13+deb11u6) ...
+[91m+ apt-get clean
+[0m[91m+ rm -rf /var/lib/apt/lists/auxfiles /var/lib/apt/lists/deb.debian.org_debian-security_dists_bullseye-security_InRelease /var/lib/apt/lists/deb.debian.org_debian-security_dists_bullseye-security_main_binary-amd64_Packages.lz4 /var/lib/apt/lists/deb.debian.org_debian_dists_bullseye-updates_InRelease /var/lib/apt/lists/deb.debian.org_debian_dists_bullseye-updates_main_binary-amd64_Packages.lz4 /var/lib/apt/lists/deb.debian.org_debian_dists_bullseye_InRelease /var/lib/apt/lists/deb.debian.org_debian_dists_bullseye_main_binary-amd64_Packages.lz4 /var/lib/apt/lists/lock /var/lib/apt/lists/partial
+[0mRemoving intermediate container a0f71c85e015
+ ---> 55279f521c01
+Step 4/4 : ENTRYPOINT ["jq"]
+ ---> Running in 278fd4520438
+Removing intermediate container 278fd4520438
+ ---> 3e36e6d2cdfc
+Successfully built 3e36e6d2cdfc
+Successfully tagged sentry-self-hosted-jq-local:latest
+
+Hey, so ... we would love to automatically find out about issues with your
+Sentry instance so that we can improve the product. Turns out there is an app
+for that, called Sentry. Would you be willing to let us automatically send data
+about your instance upstream to Sentry for development and debugging purposes?
+
+  y / yes / 1
+  n / no / 0
+
+(Btw, we send this to our own self-hosted Sentry instance, not to Sentry SaaS,
+so that we can be in this together.)
+
+Here's the info we may collect:
+
+  - OS username
+  - IP address
+  - install log
+  - runtime errors
+  - performance data
+
+Thirty (30) day retention. No marketing. Privacy policy at sentry.io/privacy.
+
+y or n? 
+Thank you. To avoid this prompt in the future, use one of these flags:
+
+  --report-self-hosted-issues
+  --no-report-self-hosted-issues
+
+or set the REPORT_SELF_HOSTED_ISSUES environment variable:
+
+  REPORT_SELF_HOSTED_ISSUES=1 to send data
+  REPORT_SELF_HOSTED_ISSUES=0 to not send data
+
+latest: Pulling from getsentry/sentry-cli
+f7dab3ab2d6e: Pulling fs layer
+8bd10b77a777: Pulling fs layer
+80aeafe5b1af: Pulling fs layer
+e75529525eaf: Pulling fs layer
+6b8e563a905f: Pulling fs layer
+e75529525eaf: Waiting
+6b8e563a905f: Waiting
+f7dab3ab2d6e: Download complete
+f7dab3ab2d6e: Pull complete
+80aeafe5b1af: Verifying Checksum
+80aeafe5b1af: Download complete
+8bd10b77a777: Download complete
+8bd10b77a777: Pull complete
+80aeafe5b1af: Pull complete
+e75529525eaf: Verifying Checksum
+e75529525eaf: Download complete
+e75529525eaf: Pull complete
+6b8e563a905f: Verifying Checksum
+6b8e563a905f: Download complete
+6b8e563a905f: Pull complete
+Digest: sha256:68ece7a688da382dc29db6666e43f5150f5728a5abb32ad6f4f42e04b371ad1d
+Status: Downloaded newer image for getsentry/sentry-cli:latest
+docker.io/getsentry/sentry-cli:latest
+
+▶ Checking for latest commit ... 
+skipped
+
+▶ Checking minimum requirements ...
+Found Docker version 20.10.21
+FAIL: Expected minimum docker-compose version to be 2.0.1 but found 1.25.0
